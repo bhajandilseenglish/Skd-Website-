@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { coursesData } from "@/data/courses";
 import { blogPostsData } from "@/data/blog";
+import { professionalCoursesData } from "@/data/professionalCourses";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://skdgroupofinstitutions.com";
@@ -113,5 +114,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
-  return [...staticPages, ...coursePages, ...blogPages];
+  // Professional course pages — corporate training sub-routes
+  const professionalCoursePages: MetadataRoute.Sitemap = professionalCoursesData.map((course) => ({
+    url: `${baseUrl}${course.route}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.85,
+  }));
+
+  return [...staticPages, ...coursePages, ...blogPages, ...professionalCoursePages];
 }
