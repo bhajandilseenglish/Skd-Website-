@@ -77,7 +77,25 @@ export default function Navbar() {
       name: "Corporate Training",
       href: "/corporate-training",
       badge: "Enterprise",
-      desc: "Customized IFRS & financial workshops",
+      desc: "Professional skills & corporate workshops",
+    },
+    {
+      name: "Data Analytics",
+      href: "/corporate-training/data-analytics",
+      badge: "₹999",
+      desc: "Turn raw data into business insights",
+    },
+    {
+      name: "Microsoft Power BI",
+      href: "/corporate-training/power-bi",
+      badge: "₹999",
+      desc: "Build interactive reports & dashboards",
+    },
+    {
+      name: "Advanced Excel",
+      href: "/corporate-training/advanced-excel",
+      badge: "₹999",
+      desc: "Master Excel from basics to dashboards",
     },
   ];
 
