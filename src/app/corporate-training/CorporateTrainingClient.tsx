@@ -71,12 +71,7 @@ const proCards = [
   },
 ];
 
-const ifrsModules = [
-  { code: "CORP-101", name: "IFRS & Ind AS Practical Implementation", desc: "Revenue recognition (IFRS 15), leases (IFRS 16), and financial instruments (IFRS 9)." },
-  { code: "CORP-102", name: "Advanced Financial Modelling & Valuation in Excel", desc: "Dynamic 3-statement models, DCF valuation, sensitivity analysis, and dashboard building." },
-  { code: "CORP-103", name: "Statutory Audit, Internal Controls & Forensic Screening", desc: "COSO frameworks, fraud risk indicators, and computer-assisted audit techniques (CAATs)." },
-  { code: "CORP-104", name: "Corporate Tax, GST & Transfer Pricing", desc: "Direct tax assessments, transfer pricing documentation, and GST audit readiness." },
-];
+
 
 type FormState = {
   name: string; company: string; email: string; phone: string;
@@ -227,54 +222,6 @@ export default function CorporateTrainingClient() {
         </div>
       </section>
 
-      {/* ── IFRS CORPORATE TRAINING ── */}
-      <section className="py-16 bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <div>
-              <span className="inline-flex items-center px-3 py-1 bg-[#EFF6FF] text-[#2855E8] rounded-full text-xs font-bold border border-[#2855E8]/20 mb-4">
-                <Building2 className="w-3 h-3 mr-1.5" /> Enterprise Program
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#101F3D] mb-4">
-                Customized IFRS &amp; Financial Workshops
-              </h2>
-              <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                Bespoke, outcome-focused learning programs for corporations, auditing firms, and financial institutions.
-                Our Corporate Learning division delivers workshops tailored to your team&apos;s real balance sheets and ERP data.
-              </p>
-              <div className="space-y-3">
-                {["Customized curriculum for your industry", "On-site or live virtual delivery", "Post-training efficacy evaluations", "Diagnostic skill-gap assessments"].map((item) => (
-                  <div key={item} className="flex items-center space-x-2.5 text-sm text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 text-[#2855E8] flex-shrink-0" /> {item}
-                  </div>
-                ))}
-              </div>
-              <div className="flex flex-wrap gap-3 mt-8">
-                <a href="#corporate-inquiry" className="inline-flex items-center px-5 py-2.5 bg-[#101F3D] text-white rounded-xl font-bold text-sm hover:bg-[#1D3766] transition-colors">
-                  <Building2 className="w-4 h-4 mr-2" /> Request Corporate Training
-                </a>
-                <a href={callUrl} className="inline-flex items-center px-5 py-2.5 border border-[#2855E8]/30 text-[#2855E8] rounded-xl font-bold text-sm hover:bg-[#EFF6FF] transition-colors">
-                  <Phone className="w-4 h-4 mr-2" /> Call: 80548 11313
-                </a>
-              </div>
-            </div>
-            <div className="space-y-3">
-              <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">Core Enterprise Modules</h3>
-              {ifrsModules.map((mod) => (
-                <div key={mod.code} className="bg-slate-50 rounded-xl p-4 border border-slate-200">
-                  <div className="flex items-start space-x-3">
-                    <span className="px-2 py-0.5 rounded-md bg-[#101F3D] text-white text-[10px] font-bold flex-shrink-0 mt-0.5">{mod.code}</span>
-                    <div>
-                      <p className="font-semibold text-sm text-[#101F3D]">{mod.name}</p>
-                      <p className="text-xs text-slate-500 mt-0.5 leading-relaxed">{mod.desc}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ── CORPORATE INQUIRY FORM ── */}
       <section className="py-16 bg-[#070E1A]" id="corporate-inquiry">
