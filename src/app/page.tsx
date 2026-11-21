@@ -8,6 +8,7 @@ import ResultsAchievementSection from "@/components/home/ResultsAchievementSecti
 import CareerPathwaysSection from "@/components/home/CareerPathwaysSection";
 import FacultySection from "@/components/home/FacultySection";
 import StudentSuccessSection from "@/components/home/StudentSuccessSection";
+import SocialProofSection from "@/components/home/SocialProofSection";
 import CampusGalleryPreview from "@/components/home/CampusGalleryPreview";
 import KnowledgeHubPreview from "@/components/home/KnowledgeHubPreview";
 import PremiumCounsellingCTA from "@/components/home/PremiumCounsellingCTA";
@@ -42,7 +43,10 @@ export default function HomePage() {
       {/* SECTION 9: STUDENT SUCCESS STORIES & TESTIMONIALS */}
       <StudentSuccessSection />
 
-      {/* SECTION 10: CAMPUS LIFE & ENVIRONMENT GALLERY */}
+      {/* SECTION 10: SOCIAL PROOF — REVIEWS, RESULTS, CAMPUS, VIDEOS */}
+      <SocialProofSection />
+
+      {/* SECTION 11: CAMPUS LIFE & ENVIRONMENT GALLERY */}
       <CampusGalleryPreview />
 
       {/* SECTION 11: KNOWLEDGE HUB & FINANCE GUIDES */}
