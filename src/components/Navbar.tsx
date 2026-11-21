@@ -1,553 +1,361 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import {
-  Phone,
-  Mail,
-  MapPin,
-  ChevronDown,
-  Menu,
-  X,
-  Award,
-  ArrowRight,
-  Sparkles,
-} from "lucide-react";
+import { Phone, ChevronDown, Menu, X, ArrowRight } from "lucide-react";
 import { siteConfig } from "@/data/siteData";
 
+const courseLinks = [
+  {
+    name: "ACCA",
+    href: "/acca-coaching-chandigarh",
+    badge: "Silver ALP",
+    desc: "Global Chartered Accountant",
+  },
+  {
+    name: "CA Foundation",
+    href: "/ca-foundation-coaching-chandigarh",
+    badge: "ICAI",
+    desc: "4-subject entry foundation",
+  },
+  {
+    name: "CA Intermediate",
+    href: "/ca-intermediate-coaching-chandigarh",
+    badge: "Both Groups",
+    desc: "Corporate accounting & taxation",
+  },
+  {
+    name: "CA Final",
+    href: "/ca-final-coaching-chandigarh",
+    badge: "Advanced",
+    desc: "Final frontier mastery",
+  },
+  {
+    name: "US CMA",
+    href: "/us-cma-coaching",
+    badge: "6-9 Months",
+    desc: "Global FP&A credential",
+  },
+  {
+    name: "US CPA",
+    href: "/us-cpa-coaching",
+    badge: "AICPA USA",
+    desc: "Gold standard US accounting",
+  },
+  {
+    name: "Corporate Training",
+    href: "/corporate-training",
+    badge: "Enterprise",
+    desc: "Customized IFRS workshops",
+  },
+  {
+    name: "Data Analytics",
+    href: "/corporate-training/data-analytics",
+    badge: "₹999",
+    desc: "Raw data to business insights",
+  },
+  {
+    name: "Microsoft Power BI",
+    href: "/corporate-training/power-bi",
+    badge: "₹999",
+    desc: "Interactive reports & dashboards",
+  },
+  {
+    name: "Advanced Excel",
+    href: "/corporate-training/advanced-excel",
+    badge: "₹999",
+    desc: "Excel from basics to dashboards",
+  },
+];
+
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about-us" },
+  { label: "Results", href: "/results" },
+  { label: "Placements", href: "/placements" },
+  { label: "Faculty", href: "/faculty" },
+  { label: "Blog", href: "/blog" },
+];
+
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [coursesDropdownOpen, setCoursesDropdownOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const pathname = usePathname();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 15);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    setMobileMenuOpen(false);
-    setCoursesDropdownOpen(false);
+    setMobileOpen(false);
+    setDropdownOpen(false);
   }, [pathname]);
 
-  const courseLinks = [
-    {
-      name: "ACCA (Global Chartered Accountant)",
-      href: "/acca-coaching-chandigarh",
-      badge: "Silver ALP",
-      desc: "UK qualification recognized in 180+ countries",
-    },
-    {
-      name: "CA Foundation",
-      href: "/ca-foundation-coaching-chandigarh",
-      badge: "ICAI Entry",
-      desc: "Comprehensive 4-subject entry foundation",
-    },
-    {
-      name: "CA Intermediate",
-      href: "/ca-intermediate-coaching-chandigarh",
-      badge: "Both Groups",
-      desc: "In-depth corporate accounting & taxation",
-    },
-    {
-      name: "CA Final",
-      href: "/ca-final-coaching-chandigarh",
-      badge: "Advanced",
-      desc: "Final frontier mastery for fellow CAs",
-    },
-    {
-      name: "US CMA",
-      href: "/us-cma-coaching",
-      badge: "6-9 Months",
-      desc: "Fastest global finance & FP&A credential",
-    },
-    {
-      name: "US CPA",
-      href: "/us-cpa-coaching",
-      badge: "AICPA USA",
-      desc: "Gold standard American accounting license",
-    },
-    {
-      name: "Corporate Training",
-      href: "/corporate-training",
-      badge: "Enterprise",
-      desc: "Professional skills & corporate workshops",
-    },
-    {
-      name: "Data Analytics",
-      href: "/corporate-training/data-analytics",
-      badge: "₹999",
-      desc: "Turn raw data into business insights",
-    },
-    {
-      name: "Microsoft Power BI",
-      href: "/corporate-training/power-bi",
-      badge: "₹999",
-      desc: "Build interactive reports & dashboards",
-    },
-    {
-      name: "Advanced Excel",
-      href: "/corporate-training/advanced-excel",
-      badge: "₹999",
-      desc: "Master Excel from basics to dashboards",
-    },
-  ];
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+  const isCoursesActive =
+    pathname.includes("coaching") ||
+    pathname === "/courses" ||
+    pathname.includes("corporate-training");
 
   return (
     <>
-      {/* Top Credibility & Contact Bar - Midnight Navy with Champagne Gold */}
-      <div className="bg-[#101F3D] text-slate-300 text-xs border-b border-white/10 py-2 px-4 sm:px-8 hidden md:block">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center space-x-6">
-            <span className="inline-flex items-center text-[#DCA43A] font-semibold tracking-wide">
-              <span className="w-2 h-2 rounded-full bg-[#DCA43A] animate-pulse mr-2" />
-              <Award className="w-3.5 h-3.5 mr-1 text-[#DCA43A]" />
+      {/* ── Top contact bar ─────────────────────────────────────────── */}
+      <div className="hidden md:block bg-[#172238] border-b border-white/8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 h-9 flex items-center justify-between">
+          <div className="flex items-center gap-6 text-[12px] text-white/55">
+            <span className="flex items-center gap-1.5 text-[#D8C6AA] font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D8C6AA] animate-pulse" />
               Approved ACCA Silver Learning Partner
             </span>
-            <span className="text-slate-600">|</span>
+            <span className="text-white/20">|</span>
             <a
               href={`tel:${siteConfig.contact.primaryPhoneRaw}`}
-              className="inline-flex items-center text-slate-200 hover:text-white transition-colors"
+              className="flex items-center gap-1 hover:text-white/90 transition-colors"
             >
-              <Phone className="w-3 h-3 mr-1.5 text-[#3979FF]" />
+              <Phone className="w-3 h-3" />
               {siteConfig.contact.primaryPhone}
             </a>
-            <span className="text-slate-600">|</span>
-            <a
-              href={`mailto:${siteConfig.contact.email}`}
-              className="inline-flex items-center text-slate-200 hover:text-white transition-colors"
-            >
-              <Mail className="w-3 h-3 mr-1.5 text-[#3979FF]" />
-              {siteConfig.contact.email}
-            </a>
+            <span className="text-white/20">|</span>
+            <span className="text-white/40">Godrej Eternia, Phase 1, Chandigarh</span>
           </div>
-
-          <div className="flex items-center space-x-5">
-            <span className="inline-flex items-center text-slate-300">
-              <MapPin className="w-3 h-3 mr-1.5 text-[#DCA43A]" />
-              Godrej Eternia, Phase 1, Chandigarh
-            </span>
-            <Link
-              href="/admin"
-              className="text-slate-400 hover:text-white text-[11px] font-medium border-b border-dotted border-slate-500 pb-0.5"
-            >
-              Admin Portal
-            </Link>
-          </div>
+          <Link
+            href="/admin"
+            className="text-white/30 hover:text-white/60 text-[11px] transition-colors"
+          >
+            Admin
+          </Link>
         </div>
       </div>
 
-      {/* Main Sticky Navigation */}
+      {/* ── Main navigation ─────────────────────────────────────────── */}
       <header
         className={`sticky top-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-[#F8FAFF]/95 backdrop-blur-xl shadow-lg shadow-[#2855E8]/5 py-3 border-b border-[#2855E8]/15"
-            : "bg-white/95 backdrop-blur-md py-4 border-b border-slate-200/70"
-        }`}
+          scrolled
+            ? "bg-white/96 backdrop-blur-xl shadow-[0_1px_24px_rgba(0,0,0,0.07)] py-2.5"
+            : "bg-[#F6F4EF]/95 backdrop-blur-md py-3.5"
+        } border-b border-black/6`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-          {/* Logo + ACCA Accreditation Badges */}
-          <div className="flex items-center space-x-3">
-            <Link href="/" className="flex items-center group">
-              <div className="relative w-36 h-12 sm:w-44 sm:h-13 transition-transform duration-300 group-hover:scale-[1.02]">
-                <Image
-                  src="/assets/brand/logo.png"
-                  alt="SKD Group of Institutions"
-                  fill
-                  priority
-                  className="object-contain"
-                  sizes="(max-width: 768px) 144px, 176px"
-                />
-              </div>
-            </Link>
-            {/* ACCA Accreditation Logos */}
-            <div className="hidden lg:flex items-center space-x-2.5 border-l border-slate-200 pl-3.5">
-              {/* Silver Learning Partner — landscape, wider */}
-              <div className="relative w-28 h-10 rounded-md overflow-hidden shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-6">
+
+          {/* Logo */}
+          <Link href="/" className="flex-shrink-0 flex items-center gap-3">
+            <div className="relative w-32 h-11 sm:w-40 sm:h-12">
+              <Image
+                src="/assets/brand/logo.png"
+                alt="SKD Group of Institutions"
+                fill
+                priority
+                className="object-contain"
+                sizes="160px"
+              />
+            </div>
+            {/* ACCA badges — desktop only */}
+            <div className="hidden lg:flex items-center gap-2 pl-3 border-l border-black/10">
+              <div className="relative w-24 h-8">
                 <Image
                   src="/assets/images/acca-silver-learning-partner.png"
                   alt="ACCA Silver Learning Partner"
                   fill
                   className="object-contain"
-                  sizes="112px"
+                  sizes="96px"
                 />
               </div>
-              {/* CBE Centre — near-square */}
-              <div className="relative w-10 h-10 rounded-md overflow-hidden shadow-sm">
+              <div className="relative w-8 h-8">
                 <Image
                   src="/assets/images/acca-cbe-centre.png"
-                  alt="ACCA Licensed CBE Centre"
+                  alt="ACCA CBE Centre"
                   fill
                   className="object-contain"
-                  sizes="40px"
+                  sizes="32px"
                 />
               </div>
             </div>
-          </div>
+          </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-1 font-medium text-[14px] text-[#14243D]">
-            <Link
-              href="/"
-              className={`px-3.5 py-2 rounded-xl transition-all relative ${
-                pathname === "/"
-                  ? "text-[#2855E8] font-bold bg-[#EFF6FF] border border-[#2855E8]/20"
-                  : "hover:text-[#2855E8] hover:bg-[#EFF6FF]/60"
-              }`}
-            >
-              Home
-            </Link>
+          {/* Desktop nav */}
+          <nav className="hidden lg:flex items-center gap-1 text-[13.5px] font-medium text-[#172238]/75">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`px-3 py-1.5 rounded-lg transition-all duration-150 ${
+                  isActive(link.href)
+                    ? "text-[#3659D9] font-semibold bg-[#3659D9]/8"
+                    : "hover:text-[#172238] hover:bg-black/5"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
 
-            <Link
-              href="/about-us"
-              className={`px-3.5 py-2 rounded-xl transition-all ${
-                pathname === "/about-us"
-                  ? "text-[#2855E8] font-bold bg-[#EFF6FF] border border-[#2855E8]/20"
-                  : "hover:text-[#2855E8] hover:bg-[#EFF6FF]/60"
-              }`}
-            >
-              About Us
-            </Link>
-
-            {/* Courses Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setCoursesDropdownOpen(true)}
-              onMouseLeave={() => setCoursesDropdownOpen(false)}
-            >
+            {/* Courses dropdown */}
+            <div ref={dropdownRef} className="relative">
               <button
                 type="button"
-                className={`px-3.5 py-2 rounded-xl inline-flex items-center space-x-1.5 transition-all ${
-                  pathname.includes("coaching") || pathname === "/courses"
-                    ? "text-[#2855E8] font-bold bg-[#EFF6FF] border border-[#2855E8]/20"
-                    : "hover:text-[#2855E8] hover:bg-[#EFF6FF]/60"
+                onClick={() => setDropdownOpen((v) => !v)}
+                className={`px-3 py-1.5 rounded-lg inline-flex items-center gap-1 transition-all duration-150 ${
+                  isCoursesActive
+                    ? "text-[#3659D9] font-semibold bg-[#3659D9]/8"
+                    : "hover:text-[#172238] hover:bg-black/5"
                 }`}
-                onClick={() => setCoursesDropdownOpen(!coursesDropdownOpen)}
-                aria-expanded={coursesDropdownOpen}
               >
-                <span>Courses</span>
+                Courses
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    coursesDropdownOpen ? "rotate-180 text-[#2855E8]" : "text-slate-400"
+                    dropdownOpen ? "rotate-180" : ""
                   }`}
                 />
               </button>
 
-              {/* Dropdown Menu */}
-              {coursesDropdownOpen && (
-                <div className="absolute top-full left-0 w-88 bg-white rounded-2xl shadow-2xl border border-slate-200/90 p-3 mt-1.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                  <div className="px-3 py-2 border-b border-slate-100 mb-1.5 flex justify-between items-center">
-                    <span className="text-[11px] font-bold text-[#66758C] uppercase tracking-wider">
-                      Professional Qualifications
-                    </span>
-                    <Link
-                      href="/courses"
-                      className="text-xs text-[#2855E8] font-bold hover:underline flex items-center"
-                    >
-                      <span>All Programs</span>
-                      <ArrowRight className="w-3 h-3 ml-1" />
-                    </Link>
-                  </div>
-                  <div className="space-y-1">
-                    {courseLinks.map((course) => (
+              {/* Dropdown panel */}
+              {dropdownOpen && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 w-[520px] bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border border-black/6 p-5 z-50">
+                  <p className="text-[10px] font-bold text-[#767C88] uppercase tracking-widest mb-3">
+                    Professional Qualifications
+                  </p>
+                  <div className="grid grid-cols-2 gap-1.5">
+                    {courseLinks.map((c) => (
                       <Link
-                        key={course.href}
-                        href={course.href}
-                        className="block p-2.5 rounded-xl hover:bg-[#EFF6FF] transition-all group border border-transparent hover:border-[#2855E8]/20"
+                        key={c.href}
+                        href={c.href}
+                        className="flex items-start gap-2.5 p-2.5 rounded-xl hover:bg-[#F6F4EF] transition-colors group"
                       >
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm font-semibold text-[#14243D] group-hover:text-[#2855E8] transition-colors">
-                            {course.name}
-                          </span>
-                          <span className="text-[10px] font-bold bg-[#EFF6FF] text-[#2855E8] px-2 py-0.5 rounded-full border border-[#2855E8]/25">
-                            {course.badge}
-                          </span>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between">
+                            <span className="text-[13px] font-semibold text-[#172238] group-hover:text-[#3659D9] transition-colors">
+                              {c.name}
+                            </span>
+                            <span className="text-[10px] font-bold text-[#3659D9] bg-[#3659D9]/8 px-1.5 py-0.5 rounded-full ml-1 flex-shrink-0">
+                              {c.badge}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-[#767C88] mt-0.5 truncate">{c.desc}</p>
                         </div>
-                        <p className="text-xs text-[#66758C] mt-0.5 line-clamp-1">
-                          {course.desc}
-                        </p>
                       </Link>
                     ))}
                   </div>
+                  <div className="mt-3 pt-3 border-t border-black/6">
+                    <Link
+                      href="/courses"
+                      className="text-[12px] font-semibold text-[#3659D9] flex items-center gap-1 hover:gap-2 transition-all"
+                    >
+                      View All Programs <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
-
-            <Link
-              href="/results"
-              className={`px-3.5 py-2 rounded-xl transition-all ${
-                pathname === "/results"
-                  ? "text-[#2855E8] font-bold bg-[#EFF6FF] border border-[#2855E8]/20"
-                  : "hover:text-[#2855E8] hover:bg-[#EFF6FF]/60"
-              }`}
-            >
-              Results
-            </Link>
-
-            <Link
-              href="/placements"
-              className={`px-3.5 py-2 rounded-xl transition-all ${
-                pathname === "/placements"
-                  ? "text-[#2855E8] font-bold bg-[#EFF6FF] border border-[#2855E8]/20"
-                  : "hover:text-[#2855E8] hover:bg-[#EFF6FF]/60"
-              }`}
-            >
-              Placements
-            </Link>
-
-            <Link
-              href="/faculty"
-              className={`px-3.5 py-2 rounded-xl transition-all ${
-                pathname === "/faculty"
-                  ? "text-[#2855E8] font-bold bg-[#EFF6FF] border border-[#2855E8]/20"
-                  : "hover:text-[#2855E8] hover:bg-[#EFF6FF]/60"
-              }`}
-            >
-              Faculty
-            </Link>
-
-            <Link
-              href="/gallery"
-              className={`px-3.5 py-2 rounded-xl transition-all ${
-                pathname === "/gallery"
-                  ? "text-[#2855E8] font-bold bg-[#EFF6FF] border border-[#2855E8]/20"
-                  : "hover:text-[#2855E8] hover:bg-[#EFF6FF]/60"
-              }`}
-            >
-              Gallery
-            </Link>
-
-            <Link
-              href="/blog"
-              className={`px-3.5 py-2 rounded-xl transition-all ${
-                pathname.startsWith("/blog")
-                  ? "text-[#2855E8] font-bold bg-[#EFF6FF] border border-[#2855E8]/20"
-                  : "hover:text-[#2855E8] hover:bg-[#EFF6FF]/60"
-              }`}
-            >
-              Blog
-            </Link>
-
-            <Link
-              href="/contact-us"
-              className={`px-3.5 py-2 rounded-xl transition-all ${
-                pathname === "/contact-us"
-                  ? "text-[#2855E8] font-bold bg-[#EFF6FF] border border-[#2855E8]/20"
-                  : "hover:text-[#2855E8] hover:bg-[#EFF6FF]/60"
-              }`}
-            >
-              Contact
-            </Link>
           </nav>
 
-          {/* Desktop Right CTA */}
-          <div className="hidden lg:flex items-center space-x-3">
+          {/* CTA */}
+          <div className="hidden lg:flex items-center gap-3">
             <a
               href={`tel:${siteConfig.contact.primaryPhoneRaw}`}
-              className="inline-flex items-center px-4 py-2 text-sm font-semibold text-[#14243D] bg-white border border-[#2855E8]/25 rounded-xl hover:border-[#2855E8] hover:text-[#2855E8] hover:bg-[#EFF6FF]/50 transition-all shadow-sm"
+              className="text-[13px] font-medium text-[#172238]/60 hover:text-[#172238] transition-colors flex items-center gap-1.5"
             >
-              <Phone className="w-3.5 h-3.5 mr-1.5 text-[#2855E8]" />
-              Call Mentors
+              <Phone className="w-3.5 h-3.5" />
+              {siteConfig.contact.primaryPhone}
             </a>
-
             <Link
               href="/admissions"
-              className="inline-flex items-center px-5 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-[#2855E8] to-[#467FFF] hover:from-[#1D3766] hover:to-[#2855E8] rounded-xl shadow-lg shadow-[#2855E8]/25 transition-all group"
+              className="px-5 py-2.5 bg-[#172238] hover:bg-[#3659D9] text-white text-[13px] font-semibold rounded-xl transition-all duration-200 shadow-sm hover:shadow-[0_4px_16px_rgba(54,89,217,0.3)]"
             >
-              <Sparkles className="w-3.5 h-3.5 mr-1.5 text-[#DCA43A]" />
-              <span>Apply Now</span>
-              <ArrowRight className="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform" />
+              Free Counselling
             </Link>
           </div>
 
-          {/* Mobile Hamburger Button */}
-          <div className="flex items-center space-x-2 lg:hidden">
-            <a
-              href={`tel:${siteConfig.contact.primaryPhoneRaw}`}
-              className="p-2.5 text-[#2855E8] bg-[#EFF6FF] rounded-xl border border-[#2855E8]/20"
-              aria-label="Call SKD"
-            >
-              <Phone className="w-4 h-4" />
-            </a>
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 text-[#14243D] hover:bg-slate-100 rounded-xl focus:outline-none"
-              aria-label="Toggle Navigation Menu"
-            >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6 text-[#101F3D]" />
-              ) : (
-                <Menu className="w-6 h-6 text-[#101F3D]" />
-              )}
-            </button>
-          </div>
+          {/* Mobile hamburger */}
+          <button
+            type="button"
+            className="lg:hidden p-2 rounded-lg text-[#172238]/70 hover:bg-black/6 transition-colors"
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
 
-        {/* Mobile Navigation Drawer */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden bg-white/98 backdrop-blur-xl border-b border-slate-200 shadow-2xl px-4 pt-3 pb-6 space-y-4 animate-in slide-in-from-top-4 duration-200">
-            {/* Accreditation Badge */}
-            <div className="bg-[#101F3D] text-white p-3 rounded-xl flex items-center justify-between text-xs border border-white/10">
-              <span className="flex items-center text-[#DCA43A] font-semibold">
-                <Award className="w-4 h-4 mr-1.5 text-[#DCA43A]" />
-                ACCA Silver Learning Partner
-              </span>
-              <div className="flex items-center space-x-2">
-                <div className="relative w-8 h-8 rounded overflow-hidden border border-white/20">
-                  <Image
-                    src="/assets/images/acca-silver-learning-partner.png"
-                    alt="ACCA Silver Learning Partner"
-                    fill
-                    className="object-contain"
-                    sizes="32px"
-                  />
-                </div>
-                <div className="relative w-8 h-8 rounded overflow-hidden border border-white/20">
-                  <Image
-                    src="/assets/images/acca-cbe-centre.png"
-                    alt="ACCA Licensed CBE Centre"
-                    fill
-                    className="object-contain"
-                    sizes="32px"
-                  />
-                </div>
+        {/* ── Mobile menu ─────────────────────────────────────────────── */}
+        {mobileOpen && (
+          <div className="lg:hidden border-t border-black/6 bg-white max-h-[85vh] overflow-y-auto">
+            <div className="px-4 py-4 space-y-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+                    isActive(link.href)
+                      ? "bg-[#3659D9]/8 text-[#3659D9] font-semibold"
+                      : "text-[#172238]/75 hover:bg-[#F6F4EF] hover:text-[#172238]"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+
+              {/* Mobile courses */}
+              <div className="pt-2 border-t border-black/6">
+                <p className="text-[10px] font-bold text-[#767C88] uppercase tracking-widest px-4 py-2">
+                  Qualifications
+                </p>
+                {courseLinks.map((c) => (
+                  <Link
+                    key={c.href}
+                    href={c.href}
+                    className="flex items-center justify-between px-4 py-2.5 rounded-xl text-sm text-[#172238]/75 hover:bg-[#F6F4EF] hover:text-[#172238] transition-colors"
+                  >
+                    <span className="font-medium">{c.name}</span>
+                    <span className="text-[10px] font-bold text-[#3659D9] bg-[#3659D9]/8 px-2 py-0.5 rounded-full">
+                      {c.badge}
+                    </span>
+                  </Link>
+                ))}
               </div>
-            </div>
 
-            <div className="grid grid-cols-2 gap-2 pt-1 font-medium text-sm">
-              <Link
-                href="/"
-                className="px-3 py-2.5 rounded-xl bg-[#EFF6FF] text-[#2855E8] font-bold"
-              >
-                Home
-              </Link>
-              <Link
-                href="/about-us"
-                className="px-3 py-2.5 rounded-xl bg-slate-50 text-[#14243D] hover:bg-[#EFF6FF] hover:text-[#2855E8]"
-              >
-                About Us
-              </Link>
-              <Link
-                href="/courses"
-                className="px-3 py-2.5 rounded-xl bg-slate-50 text-[#14243D] hover:bg-[#EFF6FF] hover:text-[#2855E8]"
-              >
-                All Courses
-              </Link>
-              <Link
-                href="/results"
-                className="px-3 py-2.5 rounded-xl bg-slate-50 text-[#14243D] hover:bg-[#EFF6FF] hover:text-[#2855E8]"
-              >
-                Results & Ranks
-              </Link>
-              <Link
-                href="/placements"
-                className="px-3 py-2.5 rounded-xl bg-slate-50 text-[#14243D] hover:bg-[#EFF6FF] hover:text-[#2855E8]"
-              >
-                Placements
-              </Link>
-              <Link
-                href="/faculty"
-                className="px-3 py-2.5 rounded-xl bg-slate-50 text-[#14243D] hover:bg-[#EFF6FF] hover:text-[#2855E8]"
-              >
-                Faculty
-              </Link>
-              <Link
-                href="/student-testimonials"
-                className="px-3 py-2.5 rounded-xl bg-slate-50 text-[#14243D] hover:bg-[#EFF6FF] hover:text-[#2855E8]"
-              >
-                Testimonials
-              </Link>
-              <Link
-                href="/gallery"
-                className="px-3 py-2.5 rounded-xl bg-slate-50 text-[#14243D] hover:bg-[#EFF6FF] hover:text-[#2855E8]"
-              >
-                Campus Life
-              </Link>
-              <Link
-                href="/scholarships"
-                className="px-3 py-2.5 rounded-xl bg-slate-50 text-[#14243D] hover:bg-[#EFF6FF] hover:text-[#2855E8]"
-              >
-                Scholarships
-              </Link>
-              <Link
-                href="/blog"
-                className="px-3 py-2.5 rounded-xl bg-slate-50 text-[#14243D] hover:bg-[#EFF6FF] hover:text-[#2855E8]"
-              >
-                Blog
-              </Link>
-            </div>
-
-            {/* Course Shortcuts */}
-            <div className="pt-2 border-t border-slate-100">
-              <p className="text-xs font-bold text-[#66758C] uppercase tracking-wider mb-2">
-                Flagship Qualifications
-              </p>
-              <div className="space-y-1.5">
+              {/* Mobile CTAs */}
+              <div className="pt-3 border-t border-black/6 space-y-2">
                 <Link
-                  href="/acca-coaching-chandigarh"
-                  className="block px-3.5 py-2.5 rounded-xl bg-[#EFF6FF] text-[#2855E8] font-bold text-xs flex justify-between items-center border border-[#2855E8]/20"
+                  href="/admissions"
+                  className="block w-full text-center py-3 bg-[#172238] text-white font-semibold text-sm rounded-xl hover:bg-[#3659D9] transition-colors"
                 >
-                  <span>ACCA Coaching Chandigarh</span>
-                  <span className="text-[10px] bg-[#2855E8] text-white px-2 py-0.5 rounded-full font-bold">
-                    Silver ALP
-                  </span>
+                  Book Free Counselling
                 </Link>
-                <Link
-                  href="/us-cma-coaching"
-                  className="block px-3.5 py-2 rounded-xl hover:bg-slate-50 text-[#14243D] font-semibold text-xs"
-                >
-                  US CMA Coaching (6-9 Months Fast-Track)
-                </Link>
-                <Link
-                  href="/us-cpa-coaching"
-                  className="block px-3.5 py-2 rounded-xl hover:bg-slate-50 text-[#14243D] font-semibold text-xs"
-                >
-                  US CPA Coaching (AICPA Evolution)
-                </Link>
-                <Link
-                  href="/ca-intermediate-coaching-chandigarh"
-                  className="block px-3.5 py-2 rounded-xl hover:bg-slate-50 text-[#14243D] font-semibold text-xs"
-                >
-                  CA Intermediate Coaching (Both Groups)
-                </Link>
-              </div>
-            </div>
-
-            {/* Mobile Actions */}
-            <div className="pt-3 border-t border-slate-100 space-y-2">
-              <Link
-                href="/admissions"
-                className="w-full inline-flex justify-center items-center py-3 bg-gradient-to-r from-[#2855E8] to-[#467FFF] text-white rounded-xl font-bold text-sm shadow-md shadow-[#2855E8]/25"
-              >
-                <Sparkles className="w-4 h-4 mr-2 text-[#DCA43A]" />
-                Book Free Counselling & Apply Now
-              </Link>
-
-              <div className="grid grid-cols-2 gap-2">
-                <a
-                  href={`tel:${siteConfig.contact.primaryPhoneRaw}`}
-                  className="inline-flex justify-center items-center py-2.5 bg-slate-100 text-[#14243D] rounded-xl font-semibold text-xs"
-                >
-                  <Phone className="w-3.5 h-3.5 mr-1.5 text-[#2855E8]" />
-                  Call: {siteConfig.contact.primaryPhoneRaw}
-                </a>
-                <a
-                  href={`https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent(
-                    siteConfig.contact.whatsappMessage
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex justify-center items-center py-2.5 bg-[#25D366] text-white rounded-xl font-semibold text-xs shadow-sm"
-                >
-                  WhatsApp Chat
-                </a>
+                <div className="grid grid-cols-2 gap-2">
+                  <a
+                    href={`tel:${siteConfig.contact.primaryPhoneRaw}`}
+                    className="flex items-center justify-center gap-1.5 py-2.5 bg-[#F6F4EF] text-[#172238] font-medium text-xs rounded-xl"
+                  >
+                    <Phone className="w-3.5 h-3.5" />
+                    Call Us
+                  </a>
+                  <a
+                    href={`https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent(siteConfig.contact.whatsappMessage)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1.5 py-2.5 bg-[#25D366] text-white font-medium text-xs rounded-xl"
+                  >
+                    WhatsApp
+                  </a>
+                </div>
               </div>
             </div>
           </div>
