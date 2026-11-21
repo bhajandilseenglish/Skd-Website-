@@ -25,7 +25,7 @@ export default function InteractiveCourseShowcase() {
     : coursesData.filter((c) => c.category === activeCategory);
 
   return (
-    <section id="courses-section" className="py-20 sm:py-28 bg-white border-b border-slate-200/80">
+    <section id="courses-section" className="py-20 sm:py-28 bg-[#F8FAFF] border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
@@ -91,7 +91,7 @@ export default function InteractiveCourseShowcase() {
                   className={`w-full text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 relative group ${
                     isSelected
                       ? "bg-[#101F3D] text-white border-[#101F3D] shadow-xl shadow-[#101F3D]/15 scale-[1.01]"
-                      : "bg-[#F8FAFF] hover:bg-[#EFF6FF] text-[#14243D] border-slate-200/80 hover:border-[#2855E8]/35 hover:shadow-md"
+                      : "bg-white hover:bg-[#F8FAFF] text-[#14243D] border-slate-200 hover:border-[#2855E8]/40 hover:shadow-md"
                   }`}
                 >
                   <div className="flex justify-between items-start mb-1.5">

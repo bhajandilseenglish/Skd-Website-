@@ -84,7 +84,7 @@ export default function WhyChooseStorytelling() {
   const current = stories[activeStoryIndex];
 
   return (
-    <section className="py-20 sm:py-28 bg-[#EFF6FF] border-b border-[#2855E8]/15">
+    <section className="py-20 sm:py-28 bg-white border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="max-w-3xl mb-14 space-y-3">

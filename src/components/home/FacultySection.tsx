@@ -8,7 +8,7 @@ import { facultyData } from "@/data/faculty";
 
 export default function FacultySection() {
   return (
-    <section className="py-20 sm:py-28 bg-[#EEF4FB] border-b border-[#2855E8]/15">
+    <section className="py-20 sm:py-28 bg-white border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-14">

@@ -190,7 +190,128 @@ body {
   background: #94A3B8;
 }
 
-/* Accessibility: Respect Reduced Motion */
+/* ─── Scroll-triggered entrance animations ─────────────────────────────────── */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1);    }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0);     }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+
+/* Utility classes */
+.animate-fade-up   { animation: fadeUp   0.65s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-fade-in   { animation: fadeIn   0.5s  ease both; }
+.animate-scale-in  { animation: scaleIn  0.5s  cubic-bezier(0.16,1,0.3,1) both; }
+.animate-slide-left  { animation: slideInLeft  0.6s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-slide-right { animation: slideInRight 0.6s cubic-bezier(0.16,1,0.3,1) both; }
+
+/* Stagger delay helpers */
+.delay-100 { animation-delay: 100ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* ─── Section divider line ──────────────────────────────────────────────────── */
+.section-divider {
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, #2855E8, #DCA43A);
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+/* ─── Premium button styles ──────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  background: linear-gradient(135deg, #2855E8 0%, #467FFF 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px -4px rgba(40,85,232,0.35);
+  transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #101F3D 0%, #2855E8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -4px rgba(40,85,232,0.45);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  background: white;
+  color: #101F3D;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 14px;
+  border: 1.5px solid rgba(40,85,232,0.25);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
+}
+.btn-secondary:hover {
+  background: #EFF6FF;
+  border-color: #2855E8;
+  transform: translateY(-2px);
+}
+
+/* ─── Eyebrow pill label ─────────────────────────────────────────────────────── */
+.eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 1rem;
+  background: #EFF6FF;
+  color: #2855E8;
+  border: 1px solid rgba(40,85,232,0.2);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ─── Card polish ───────────────────────────────────────────────────────────── */
+.card-hover {
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 48px -8px rgba(40,85,232,0.14);
+  border-color: rgba(40,85,232,0.35);
+}
+
+/* ─── Scrollbar hide ────────────────────────────────────────────────────────── */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ─── Accessibility: Respect Reduced Motion ──────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
