@@ -51,7 +51,7 @@ export const coursesData: CourseDetail[] = [
     modes: "Face-to-Face Classroom (Godrej Eternia, Chandigarh) & Live Interactive Online",
     awardingBody: "Association of Chartered Certified Accountants (UK)",
     heroImage: "/assets/images/acca-coaching-chandigarh-.png",
-    cardImage: "/assets/images/Teach-Img-2.jpg",
+    cardImage: "/assets/classroom/1.png",
     tagline: "Become a Globally Recognised Finance Leader in 180+ Countries",
     overview:
       "SKD Group of Institutions is an Approved ACCA Silver Learning Partner in Chandigarh, offering rigorous, student-centric coaching for all 13 papers of the ACCA qualification. Our program features computer-based exam (CBE) simulation platforms, concept-first lecture delivery, licensed BPP & Kaplan study materials, and direct mentorship by qualified ACCA & CA faculty members. Whether you are stepping out of Class 12 or already working in corporate finance, SKD provides a personalized roadmap to completion.",
@@ -221,7 +221,7 @@ export const coursesData: CourseDetail[] = [
     modes: "Classroom (Chandigarh) & Live Online",
     awardingBody: "The Institute of Chartered Accountants of India (ICAI)",
     heroImage: "/assets/images/ca-coaching-chandigarh.png",
-    cardImage: "/assets/images/Teach-Img-4.jpg",
+    cardImage: "/assets/classroom/2.png",
     tagline: "Build an Unshakeable Foundation for India's Most Prestigious Finance Credential",
     overview:
       "CA Foundation is the entry-level gateway to becoming a Chartered Accountant in India. SKD Group of Institutions in Chandigarh provides an intensive, results-oriented training program that bridges high school commerce with ICAI expectations. Our experienced faculty ensures thorough conceptual clarity in accounting, legal language formulation, quantitative problem solving, and economic reasoning.",
@@ -311,7 +311,7 @@ export const coursesData: CourseDetail[] = [
     modes: "Classroom (Chandigarh) & Live Online Batches",
     awardingBody: "The Institute of Chartered Accountants of India (ICAI)",
     heroImage: "/assets/images/ca-coaching-chandigarh.png",
-    cardImage: "/assets/images/event12.png",
+    cardImage: "/assets/seminar/Enhanced_Photo_01.jpg",
     tagline: "Master Advanced Accounting, Corporate Laws & Taxation with Expert Faculty",
     overview:
       "CA Intermediate is the crucial second tier of the Chartered Accountancy trajectory. SKD Group provides an analytical, application-driven learning program covering both Group 1 and Group 2. With experienced Chartered Accountant mentors, our students build deep proficiency in corporate reporting standards, direct & indirect tax law computations, statutory auditing protocols, and strategic financial decision making.",
@@ -416,7 +416,7 @@ export const coursesData: CourseDetail[] = [
     modes: "Classroom (Chandigarh) & High-Definition Live Online",
     awardingBody: "The Institute of Chartered Accountants of India (ICAI)",
     heroImage: "/assets/images/ca-coaching-chandigarh.png",
-    cardImage: "/assets/images/Teach-Img-2.jpg",
+    cardImage: "/assets/classroom/1.png",
     tagline: "Cross the Final Frontier to Become a Fellow Chartered Accountant",
     overview:
       "CA Final demands elite strategic vision, master-level technical knowledge, and an impeccable ability to synthesise corporate law, tax structures, and global financial reporting. SKD Group provides advanced coaching designed specifically for working articles and CA candidates, combining weekend schedules, recorded on-demand access, and case study masterclasses led by veteran industry practitioners.",
@@ -516,8 +516,8 @@ export const coursesData: CourseDetail[] = [
     duration: "6 to 9 Months Fast-Track",
     modes: "Classroom (Chandigarh) & Interactive Online Pan-India",
     awardingBody: "Institute of Management Accountants (IMA, USA)",
-    heroImage: "/assets/images/cma-students-1920x750-1.webp",
-    cardImage: "/assets/images/cmaaa.jpg",
+    heroImage: "/assets/classroom/4.png",
+    cardImage: "/assets/seminar/Enhanced_Photo_02.jpg",
     tagline: "The Fastest Global Credential in Strategic Management Accounting & FP&A",
     overview:
       "The US CMA is a globally recognized professional credential administered by the Institute of Management Accountants (IMA), USA. Designed for finance professionals who drive executive business strategy, cost control, and data-driven decision making, the qualification consists of just two exam parts. SKD Group provides an accelerated training program with an 85%+ pass track record, Gleim/Wiley curriculum materials, and complete exam booking and credentialing guidance.",
@@ -612,8 +612,8 @@ export const coursesData: CourseDetail[] = [
     duration: "12 to 18 Months",
     modes: "Classroom (Chandigarh) & Online Pan-India",
     awardingBody: "American Institute of Certified Public Accountants (AICPA) & NASBA",
-    heroImage: "/assets/images/cpa-1.jpg",
-    cardImage: "/assets/images/a17.jpg",
+    heroImage: "/assets/classroom/5.png",
+    cardImage: "/assets/seminar/Enhanced_Photo_03.jpg",
     tagline: "The Pinnacle of Global Accounting Credentials with US Licensure",
     overview:
       "The US CPA (Certified Public Accountant) is widely recognized as the gold standard in global accounting and auditing. With the CPA exam now administered continuously in Prometric test centers across India, earning your license has never been more accessible. SKD Group provides end-to-end support: from NASBA transcript evaluation and board selection to rigorous conceptual coaching across Core and Discipline subjects.",
@@ -728,8 +728,8 @@ export const coursesData: CourseDetail[] = [
     duration: "Customized Workshops & Cohorts",
     modes: "On-Premises Corporate Workshops & Hybrid Delivery",
     awardingBody: "SKD Corporate Learning & Development Division",
-    heroImage: "/assets/images/h2.jpg",
-    cardImage: "/assets/images/group-1.jpg",
+    heroImage: "/assets/classroom/6.png",
+    cardImage: "/assets/seminar/Enhanced_Photo_04.jpg",
     tagline: "Empowering Finance Teams with Cutting-Edge Technical and Analytical Skills",
     overview:
       "In an era of dynamic regulatory frameworks, AI-driven automation, and global accounting standard shifts, high-performing organizations require continuously upskilled finance teams. SKD Group’s Corporate Training division provides bespoke, outcome-focused learning programs for corporations, auditing firms, and financial institutions across Chandigarh, Punjab, Haryana, and pan-India.",

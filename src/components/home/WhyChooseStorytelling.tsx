@@ -28,7 +28,7 @@ export default function WhyChooseStorytelling() {
         "Faculty who have themselves cleared ACCA, CA & CMA credentials",
         "Study plan customized to student's academic background",
       ],
-      image: "/assets/images/Teach-Img-4.jpg",
+      image: "/assets/classroom/4.png",
       badge: "Pedagogy & Faculty",
     },
     {
@@ -44,7 +44,7 @@ export default function WhyChooseStorytelling() {
         "Time-tracked mock exams with detailed faculty scoring breakdown",
         "Instant diagnosis on weak technical areas and answer formatting",
       ],
-      image: "/assets/images/Teach-Img-2.jpg",
+      image: "/assets/classroom/1.png",
       badge: "Exam Simulation",
     },
     {
@@ -60,7 +60,7 @@ export default function WhyChooseStorytelling() {
         "Seamless live interactive broadcasts with instant microphone Q&A",
         "Unlimited recording archive available until exam completion",
       ],
-      image: "/assets/images/h2.jpg",
+      image: "/assets/classroom/2.png",
       badge: "Campus & Technology",
     },
     {
@@ -76,7 +76,7 @@ export default function WhyChooseStorytelling() {
         "Direct referral tie-ups with multinational audit & advisory firms",
         "Career guidance on articleship and permanent employment pathways",
       ],
-      image: "/assets/images/cma-students-1920x750-1.webp",
+      image: "/assets/seminar/Enhanced_Photo_01.jpg",
       badge: "Placement & Growth",
     },
   ];

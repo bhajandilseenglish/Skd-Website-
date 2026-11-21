@@ -77,7 +77,7 @@ export default function StudentSuccessSection() {
             <div className="lg:col-span-5 relative">
               <div className="relative rounded-2xl overflow-hidden h-72 sm:h-96 w-full bg-[#132445] shadow-xl border-2 border-white/10">
                 <Image
-                  src={activeTestimonial.image || "/assets/images/Teach-Img-2.jpg"}
+                  src={activeTestimonial.image || "/assets/results/Enhanced_Photo_01.jpg"}
                   alt={activeTestimonial.name}
                   fill
                   className="object-cover object-top"

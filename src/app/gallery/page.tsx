@@ -22,16 +22,16 @@ export default function GalleryPage() {
       <Breadcrumb items={[{ label: "Campus Life & Gallery" }]} />
 
       <div className="space-y-12 pb-20">
-        <section className="bg-gradient-to-b from-[#F8FAFF] via-[#EFF6FF]/60 to-white py-14 border-b border-[#E2E8F5]">
+        <section className="bg-[#F6F4EF] py-14 border-b border-black/8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-            <div className="inline-flex items-center space-x-1.5 px-3 py-1 bg-[#EFF6FF] text-[#2855E8] rounded-full text-xs font-semibold mb-3 border border-[#2855E8]/20">
-              <Building className="w-3.5 h-3.5 text-[#2855E8]" />
+            <div className="inline-flex items-center space-x-1.5 px-3 py-1 bg-white text-[#3659D9] rounded-full text-xs font-semibold mb-3 border border-black/8 shadow-sm">
+              <Building className="w-3.5 h-3.5 text-[#3659D9]" />
               <span>Godrej Eternia Campus Life</span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold text-[#101F3D] tracking-tight">
+            <h1 className="text-3xl sm:text-5xl font-extrabold text-[#172238] tracking-tight">
               Life at SKD Group of Institutions
             </h1>
-            <p className="text-base text-[#66758C] mt-3 leading-relaxed">
+            <p className="text-base text-[#767C88] mt-3 leading-relaxed">
               Explore authentic glimpses into our daily classroom lectures, computer-based exam practice sessions, student seminars, and ranker celebrations in Chandigarh.
             </p>
 
@@ -44,8 +44,8 @@ export default function GalleryPage() {
                   onClick={() => setActiveCategory(cat)}
                   className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
                     activeCategory === cat
-                      ? "bg-gradient-to-r from-[#2855E8] to-[#467FFF] text-white shadow-md shadow-blue-500/25"
-                      : "bg-white text-[#66758C] hover:bg-[#EFF6FF] border border-[#E2E8F5]"
+                      ? "bg-[#172238] text-white shadow-md"
+                      : "bg-white text-[#172238] hover:bg-black/5 border border-black/8"
                   }`}
                 >
                   {cat}

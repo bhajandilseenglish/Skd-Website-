@@ -62,7 +62,7 @@ export const blogPostsData: BlogPost[] = [
     },
     summary:
       "An objective, detailed comparison between ACCA (UK) and Indian Chartered Accountancy (ICAI) examining pass rates, duration, global mobility, statutory audit rights, and salary packages.",
-    coverImage: "/assets/images/Teach-Img-2.jpg",
+    coverImage: "/assets/classroom/1.png",
     tags: ["ACCA vs CA", "Finance Qualifications", "Career Guidance", "Chartered Accountancy"],
     metaTitle: "ACCA vs CA: Which Qualification Should You Choose? | SKD Group",
     metaDescription:
@@ -127,7 +127,7 @@ export const blogPostsData: BlogPost[] = [
     },
     summary:
       "Explore real-world roles for ACCA qualified professionals in India's booming GCC sector, Big 4 firms, and international employment hubs across the Middle East, UK, and Europe.",
-    coverImage: "/assets/images/event12.png",
+    coverImage: "/assets/seminar/Enhanced_Photo_01.jpg",
     tags: ["ACCA Salary", "ACCA Jobs India", "Big 4 Careers", "Global Finance"],
     metaTitle: "Career Opportunities & Salary After ACCA in India & Abroad | SKD",
     metaDescription:
@@ -160,7 +160,7 @@ export const blogPostsData: BlogPost[] = [
     },
     summary:
       "Comparing the 2-part US Certified Management Accountant (CMA) credential with the 13-paper ACCA qualification to help you choose the right path for your timeline and career goals.",
-    coverImage: "/assets/images/cma-students-1920x750-1.webp",
+    coverImage: "/assets/classroom/2.png",
     tags: ["US CMA vs ACCA", "Management Accounting", "CMA India", "Commerce Guide"],
     metaTitle: "US CMA vs ACCA: Duration, Syllabus & Scope Compared | SKD Group",
     metaDescription:
@@ -189,7 +189,7 @@ export const blogPostsData: BlogPost[] = [
     },
     summary:
       "Clear guidance on navigating NASBA credit evaluations, how 3-year Indian B.Com degrees are calculated, and how to qualify for US CPA testing in Prometric centres in India.",
-    coverImage: "/assets/images/cpa-1.jpg",
+    coverImage: "/assets/classroom/3.png",
     tags: ["US CPA Eligibility", "120 Credit Rule", "CPA India", "NASBA Evaluation"],
     metaTitle: "US CPA Eligibility for Indian Students: 120/150 Credit Guide | SKD",
     metaDescription:
@@ -223,7 +223,7 @@ export const blogPostsData: BlogPost[] = [
     },
     summary:
       "Practical study techniques, subject prioritization, answer writing formats, and revision schedules to crack the ICAI CA Foundation examination in your very first attempt.",
-    coverImage: "/assets/images/Teach-Img-4.jpg",
+    coverImage: "/assets/classroom/4.png",
     tags: ["CA Foundation", "ICAI Strategy", "First Attempt Pass", "CA Study Plan"],
     metaTitle: "CA Foundation Preparation Strategy (Pass 1st Attempt) | SKD Group",
     metaDescription:
@@ -253,7 +253,7 @@ export const blogPostsData: BlogPost[] = [
     },
     summary:
       "A student-first checklist for evaluating ACCA institutes in the Chandigarh tricity region, from learning partner accreditation to faculty qualifications and CBE test engines.",
-    coverImage: "/assets/images/h2.jpg",
+    coverImage: "/assets/classroom/5.png",
     tags: ["ACCA Chandigarh", "Best Coaching", "Education Checklist", "Learning Partner"],
     metaTitle: "How to Choose the Best ACCA Coaching Institute in Chandigarh | SKD",
     metaDescription:

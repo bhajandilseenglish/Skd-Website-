@@ -173,7 +173,7 @@ export default function HeroSection() {
               <div className="relative rounded-2xl overflow-hidden shadow-[0_24px_64px_rgba(23,34,56,0.18)] border border-white/50">
                 <div className="relative" style={{ aspectRatio: "4/5" }}>
                   <Image
-                    src="/assets/images/acca-coaching-chandigarh-.png"
+                    src="/assets/classroom/3.png"
                     alt="SKD Group of Institutions — Finance education in Chandigarh"
                     fill
                     priority

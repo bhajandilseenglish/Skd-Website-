@@ -51,8 +51,8 @@ export default function LearningExperienceSection() {
             <div className="relative rounded-3xl overflow-hidden border-4 border-white shadow-2xl bg-[#101F3D] group">
               <div className="relative h-[420px] sm:h-[500px] w-full">
                 <Image
-                  src="/assets/images/group-1.jpg"
-                  alt="SKD Group Classroom & Students Cohort"
+                  src="/assets/classroom/5.png"
+                  alt="SKD Group Classroom & Campus"
                   fill
                   className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 600px"

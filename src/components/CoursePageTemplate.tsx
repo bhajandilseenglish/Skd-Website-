@@ -387,7 +387,7 @@ export default function CoursePageTemplate({ course }: CoursePageTemplateProps) 
           <div className="bg-gradient-to-r from-blue-50 to-amber-50/50 rounded-3xl p-8 border border-blue-100 shadow-sm flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-8">
             <div className="relative w-28 h-28 rounded-2xl overflow-hidden shrink-0 shadow-md">
               <Image
-                src={relevantTestimonial.image || "/assets/images/Teach-Img-2.jpg"}
+                src={relevantTestimonial.image || "/assets/results/Enhanced_Photo_01.jpg"}
                 alt={relevantTestimonial.name}
                 fill
                 className="object-cover"

@@ -65,7 +65,7 @@ export default function TestimonialsPage() {
                 <div className="flex items-center space-x-4 pt-4 border-t border-gray-100">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0 bg-slate-100">
                     <Image
-                      src={t.image || "/assets/images/Teach-Img-2.jpg"}
+                      src={t.image || "/assets/results/Enhanced_Photo_01.jpg"}
                       alt={t.name}
                       fill
                       className="object-cover"

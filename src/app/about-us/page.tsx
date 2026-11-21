@@ -67,7 +67,7 @@ export default function AboutPage() {
               <div className="lg:col-span-5 relative">
                 <div className="relative h-80 sm:h-96 rounded-3xl overflow-hidden shadow-card-blue border-4 border-white">
                   <Image
-                    src="/assets/images/event12.png"
+                    src="/assets/seminar/Enhanced_Photo_01.jpg"
                     alt="SKD Group of Institutions student seminar"
                     fill
                     priority

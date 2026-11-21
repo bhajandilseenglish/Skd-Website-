@@ -18,7 +18,7 @@ export const testimonialsData: Testimonial[] = [
     achievement: "Cleared SBR & SBL in 1st Attempt",
     placedAt: "Deloitte India",
     city: "Chandigarh",
-    image: "/assets/images/Teach-Img-2.jpg",
+    image: "/assets/results/Enhanced_Photo_01.jpg",
     quote:
       "Studying at SKD Group for my ACCA papers was the best decision for my career. The faculty at Godrej Eternia gave me personal attention, cleared every single doubt, and the computer-based exam mock tests gave me huge confidence on exam day.",
     verified: true,
@@ -30,7 +30,7 @@ export const testimonialsData: Testimonial[] = [
     achievement: "Cleared Both Parts in 7 Months",
     placedAt: "Genpact Global Services",
     city: "Mohali",
-    image: "/assets/images/cmaaa.jpg",
+    image: "/assets/results/Enhanced_Photo_02.jpg",
     quote:
       "The US CMA curriculum can feel daunting if you don't have the right guidance. SKD's faculty simplified cost concepts and FP&A budgeting, and the Prometric test engine interface made the real exam feel like just another mock test.",
     verified: true,
@@ -42,7 +42,7 @@ export const testimonialsData: Testimonial[] = [
     achievement: "Both Groups Cleared",
     placedAt: "Top CA Firm Articleship",
     city: "Panchkula",
-    image: "/assets/images/event12.png",
+    image: "/assets/results/Enhanced_Photo_03.jpg",
     quote:
       "The taxation and law lectures by SKD mentors are extraordinary. The faculty teaches with practical case studies and updated amendments rather than rote memorization. The regular chapter tests kept me accountable throughout the 9 months.",
     verified: true,
@@ -54,7 +54,7 @@ export const testimonialsData: Testimonial[] = [
     achievement: "Passed 4/4 Sections",
     placedAt: "KPMG Global Services",
     city: "Chandigarh",
-    image: "/assets/images/a17.jpg",
+    image: "/assets/results/Enhanced_Photo_04.jpg",
     quote:
       "Navigating the 120-credit requirement and NASBA evaluation was very overwhelming before I met the counselors at SKD. They handled the paperwork smoothly and the Task-Based Simulation coaching was spot-on for the actual exam.",
     verified: true,

@@ -19,7 +19,7 @@ export const facultyData: FacultyMember[] = [
     expertise: ["Financial Reporting (Ind AS / IFRS)", "Strategic Business Reporting", "Audit & Assurance"],
     experience: "14+ Years in Professional Accountancy Education",
     bio: "Having mentored over 3,500+ successful ACCA and CA candidates across North India, our lead faculty brings deep practical expertise in international accounting standards, audit methodology, and exam technique.",
-    image: "/assets/images/Teach-Img-4.jpg",
+    image: "/assets/classroom/4.png",
     coursesTaught: ["ACCA SBR", "ACCA FR", "CA Final Financial Reporting", "CA Inter Accounting"],
   },
   {
@@ -30,7 +30,7 @@ export const facultyData: FacultyMember[] = [
     expertise: ["Advanced Financial Management", "Performance Management", "Financial Planning & Analysis"],
     experience: "11+ Years Corporate & Teaching Experience",
     bio: "Former corporate FP&A leader who transitioned to full-time pedagogy. Specializes in translating intricate financial math, derivatives, and valuation models into crystal-clear conceptual frameworks.",
-    image: "/assets/images/Teach-Img-2.jpg",
+    image: "/assets/classroom/1.png",
     coursesTaught: ["ACCA FM", "ACCA AFM", "US CMA Part 1 & 2", "CA Inter FM"],
   },
   {
@@ -41,7 +41,7 @@ export const facultyData: FacultyMember[] = [
     expertise: ["Direct Tax Laws", "GST & Customs", "Corporate Laws"],
     experience: "12+ Years Professional Tax Practice & Academia",
     bio: "Practicing advocate and Chartered Accountant with specialized mastery over domestic and international tax frameworks. Renowned for analytical case-solving and structured exam presentations.",
-    image: "/assets/images/event12.png",
+    image: "/assets/seminar/Enhanced_Photo_02.jpg",
     coursesTaught: ["ACCA TX", "CA Inter Taxation", "CA Final Direct & Indirect Taxes"],
   },
   {
@@ -52,7 +52,7 @@ export const facultyData: FacultyMember[] = [
     expertise: ["US GAAP", "AICPA Auditing & Attestation (AUD)", "US Corporate Tax (REG)"],
     experience: "10+ Years (ex-Big 4 US Practice)",
     bio: "Ex-Big 4 US Audit specialist with extensive practical experience in PCAOB audits and SEC reporting. Guides CPA candidates through NASBA evaluation, state board selection, and Task-Based Simulations.",
-    image: "/assets/images/a17.jpg",
+    image: "/assets/classroom/6.png",
     coursesTaught: ["US CPA AUD", "US CPA FAR", "US CPA REG"],
   },
 ];

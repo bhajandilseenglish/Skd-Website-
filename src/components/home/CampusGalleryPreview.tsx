@@ -9,35 +9,35 @@ import { galleryData } from "@/data/gallery";
 export default function CampusGalleryPreview() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-  const categories = ["All", "Classroom", "Campus", "Events", "Workshop"];
+  const categories = ["All", "Classroom", "Seminars & Events", "Campus Life", "Corporate Workshops"];
 
   const filteredItems = selectedCategory === "All"
     ? galleryData.slice(0, 4)
     : galleryData.filter((item) => item.category === selectedCategory).slice(0, 4);
 
   return (
-    <section className="py-20 sm:py-28 bg-[#F8FAFF] border-b border-slate-200/80">
+    <section className="py-20 sm:py-28 bg-[#F6F4EF] border-b border-black/8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div className="max-w-2xl space-y-3">
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-[#EFF6FF] text-[#2855E8] rounded-full text-xs font-bold border border-[#2855E8]/20">
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-white text-[#3659D9] rounded-full text-xs font-bold border border-black/8 shadow-sm">
               <Camera className="w-3.5 h-3.5" />
               <span>Campus Life & Facilities</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#101F3D] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#172238] tracking-tight">
               A Vibrant Space for <br />
-              <span className="font-editorial text-[#2855E8]">Focused Financial Learning</span>
+              <span className="font-editorial text-[#3659D9]">Focused Financial Learning</span>
             </h2>
-            <p className="text-sm sm:text-base text-[#66758C]">
-              Take a look inside our high-tech computer exam facilities, interactive lecture amphitheaters, and academic workshops at Godrej Eternia.
+            <p className="text-sm sm:text-base text-[#767C88]">
+              Take a look inside our interactive lecture halls, computer labs, and academic workshops at Godrej Eternia, Chandigarh.
             </p>
           </div>
 
           <div className="mt-6 md:mt-0">
             <Link
               href="/gallery"
-              className="inline-flex items-center text-sm font-bold text-[#2855E8] hover:text-[#101F3D] transition-colors group"
+              className="inline-flex items-center text-sm font-bold text-[#3659D9] hover:text-[#172238] transition-colors group"
             >
               <span>Explore Complete Campus Gallery</span>
               <ArrowRight className="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform" />
@@ -54,8 +54,8 @@ export default function CampusGalleryPreview() {
               onClick={() => setSelectedCategory(cat)}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
                 selectedCategory === cat
-                  ? "bg-[#2855E8] text-white shadow-md shadow-[#2855E8]/25"
-                  : "bg-white text-[#14243D] hover:bg-[#EFF6FF] border border-slate-200/90"
+                  ? "bg-[#172238] text-white shadow-md"
+                  : "bg-white text-[#172238] hover:bg-black/5 border border-black/8"
               }`}
             >
               {cat}
