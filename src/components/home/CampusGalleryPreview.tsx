@@ -9,7 +9,7 @@ import { galleryData } from "@/data/gallery";
 export default function CampusGalleryPreview() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-  const categories = ["All", "Classroom", "Seminars & Events", "Campus Life", "Corporate Workshops"];
+  const categories = ["All", "Classroom", "Seminars & Events", "Exam Results", "Student Reviews"];
 
   const filteredItems = selectedCategory === "All"
     ? galleryData.slice(0, 4)

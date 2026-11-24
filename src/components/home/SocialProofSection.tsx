@@ -8,20 +8,35 @@ import React, {
   TouchEvent,
 } from "react";
 import Image from "next/image";
-import { Play, Pause, X, ChevronLeft, ChevronRight, Volume2, VolumeX, Maximize } from "lucide-react";
+import {
+  Play,
+  Pause,
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Volume2,
+  VolumeX,
+  Maximize,
+  Star,
+  ShieldCheck,
+  CheckCircle2,
+  Sparkles,
+  Award,
+  Video,
+} from "lucide-react";
 
-// ─── Data ────────────────────────────────────────────────────────────────────
+// ─── Data from c:\SKD\final images ───────────────────────────────────────────
 
 const accaVideos = [
-  { src: "/assets/videos/acca-testimonials/Abhiraj Bakshi.mp4", name: "Abhiraj Bakshi", course: "ACCA Student" },
-  { src: "/assets/videos/acca-testimonials/Anahita Singh.mp4", name: "Anahita Singh", course: "ACCA Student" },
-  { src: "/assets/videos/acca-testimonials/Arshpreet Kaur.mp4", name: "Arshpreet Kaur", course: "ACCA Student" },
-  { src: "/assets/videos/acca-testimonials/Harsimar Kaur.mp4", name: "Harsimar Kaur", course: "ACCA Student" },
-  { src: "/assets/videos/acca-testimonials/Jasmine Kaur.mp4", name: "Jasmine Kaur", course: "ACCA Student" },
-  { src: "/assets/videos/acca-testimonials/pranjal.mp4", name: "Pranjal", course: "ACCA Student" },
+  { src: "/assets/videos/acca-testimonials/Abhiraj Bakshi.mp4", name: "Abhiraj Bakshi", course: "ACCA Global Chartered Accountant", batch: "Chandigarh Campus" },
+  { src: "/assets/videos/acca-testimonials/Anahita Singh.mp4", name: "Anahita Singh", course: "ACCA Global Chartered Accountant", batch: "Chandigarh Campus" },
+  { src: "/assets/videos/acca-testimonials/Arshpreet Kaur.mp4", name: "Arshpreet Kaur", course: "ACCA Merit Ranker — Financial Accounting", batch: "October 2026 Batch" },
+  { src: "/assets/videos/acca-testimonials/Harsimar Kaur.mp4", name: "Harsimar Kaur", course: "ACCA Global Chartered Accountant", batch: "Chandigarh Campus" },
+  { src: "/assets/videos/acca-testimonials/Jasmine Kaur.mp4", name: "Jasmine Kaur", course: "ACCA Global Chartered Accountant", batch: "Chandigarh Campus" },
+  { src: "/assets/videos/acca-testimonials/pranjal.mp4", name: "Pranjal", course: "ACCA Global Chartered Accountant", batch: "Chandigarh Campus" },
 ];
 
-const reviewImages = [
+const reviewScreenshots = [
   "/assets/reviews/WhatsApp Image 2026-11-02 at 4.02.23 PM (2).jpeg",
   "/assets/reviews/WhatsApp Image 2026-11-02 at 4.02.24 PM (1).jpeg",
   "/assets/reviews/WhatsApp Image 2026-11-02 at 4.02.24 PM.jpeg",
@@ -34,21 +49,110 @@ const reviewImages = [
   "/assets/reviews/WhatsApp Image 2026-11-19 at 4.27.00 PM.jpeg",
   "/assets/reviews/WhatsApp Image 2026-11-19 at 4.27.01 PM.jpeg",
   "/assets/reviews/WhatsApp Image 2026-11-19 at 4.33.43 PM.jpeg",
+  "/assets/reviews/f7b828d6-a87c-42c1-8d52-76ac53e971f4.png",
+];
+
+// Analyzed real student reviews directly extracted from the review images
+const studentReviewsData = [
+  {
+    name: "Aryan Thakur",
+    course: "Data Analytics (60 Hours Industrial Training)",
+    quote: "You made every topic easy to understand by explaining everything in a simple and patient way. I have learned a lot and feel much more confident applying data analysis concepts now.",
+    batch: "15-Day Industrial Internship Batch",
+    screenshot: "/assets/reviews/WhatsApp Image 2026-11-02 at 4.02.23 PM (2).jpeg",
+  },
+  {
+    name: "Ayan Meer",
+    course: "Advanced Excel & Power BI",
+    quote: "The 15-day Advanced Excel and Power BI training at SKD Institute was excellent. The trainer explained complex topics like pivot tables, VLOOKUP, macros, and dashboards in a clear, practical way. Hands-on exercises and real-world examples made learning engaging. Doubts were resolved patiently. I now feel confident applying these skills professionally. Highly recommended!",
+    batch: "15-Day Internship Program",
+    screenshot: "/assets/reviews/WhatsApp Image 2026-11-19 at 4.27.01 PM.jpeg",
+  },
+  {
+    name: "Atharav Sharma",
+    course: "MS Excel & Advanced Excel (20 Hours)",
+    quote: "The way you explained every topic, provided us with practice questions, and patiently cleared all our doubts made learning easy and interesting. Excellent faculty support throughout!",
+    batch: "20-Hour Industrial Training",
+    screenshot: "/assets/reviews/WhatsApp Image 2026-11-02 at 4.02.24 PM (1).jpeg",
+  },
+  {
+    name: "Shrishty Chaudhary",
+    course: "Advanced Excel Workshop",
+    quote: "So knowledgeable workshop and the way you teach us is incredible. Thank you for being such a wonderful mentor during our Advanced Excel workshop. Today being our last day, I wanted to express how much I appreciate your patience and dedication in simplifying tough topics for us. I'm truly grateful for everything I've learned under your guidance.",
+    batch: "Excel Workshop Batch",
+    screenshot: "/assets/reviews/WhatsApp Image 2026-11-19 at 4.26.32 PM.jpeg",
+  },
+  {
+    name: "Neha",
+    course: "Advanced Excel (15-Day Internship)",
+    quote: "The 15-day Advanced Excel internship was a great learning experience. I learned many useful Excel functions and improved my practical knowledge. The sessions were informative, easy to understand, and helpful for my future career. I appreciate this wonderful opportunity!",
+    batch: "15-Day Internship Cohort",
+    screenshot: "/assets/reviews/WhatsApp Image 2026-11-19 at 4.27.01 PM.jpeg",
+  },
+  {
+    name: "Shubham Maurya",
+    course: "Advanced Excel Formulas & Dashboards",
+    quote: "Thank you Ma'am, for teaching Excel so well. Your explanation made even difficult formulas easy. Really grateful for the support and patient mentorship!",
+    batch: "Excel Training Cohort",
+    screenshot: "/assets/reviews/WhatsApp Image 2026-11-19 at 4.27.01 PM.jpeg",
+  },
+  {
+    name: "Nissen Varghese Binu",
+    course: "Data Analytics (60 Hours Industrial Training)",
+    quote: "It was a great learning journey. The content was excellent, and the sessions were incredibly helpful. Hands-on datasets made the analytical concepts come alive.",
+    batch: "Data Analytics Internship",
+    screenshot: "/assets/reviews/WhatsApp Image 2026-11-02 at 4.02.23 PM (2).jpeg",
+  },
+  {
+    name: "Ashish Kumar",
+    course: "Advanced Excel (15-Day Training)",
+    quote: "Thank you team SKD for this excellent 15-day advanced excel training. The sessions were informative and practical helping me enhance my excel skills and technical knowledge. It was a valuable learning experience and I truly appreciate this opportunity.",
+    batch: "15-Day Training Batch",
+    screenshot: "/assets/reviews/WhatsApp Image 2026-11-19 at 4.27.01 PM.jpeg",
+  },
+  {
+    name: "Vansh Rawal",
+    course: "Advanced Excel in Business",
+    quote: "Thank you so much for providing us with this wonderful session. The session was quite interactive, informative, and easy to understand. It showed us exactly how Excel works in real business scenarios.",
+    batch: "Corporate Skills Cohort",
+    screenshot: "/assets/reviews/WhatsApp Image 2026-11-19 at 4.27.01 PM.jpeg",
+  },
+  {
+    name: "Aaryansh Sharma",
+    course: "Power BI (Industrial Training)",
+    quote: "The practical skills and knowledge you shared have provided us with a valuable learning experience that will greatly benefit our academic and professional growth.",
+    batch: "Power BI Industrial Training",
+    screenshot: "/assets/reviews/WhatsApp Image 2026-11-02 at 4.02.24 PM.jpeg",
+  },
+  {
+    name: "Ayan Khan",
+    course: "Power BI Dashboards & Reports",
+    quote: "This training truly helped me grow, gain confidence, and believe in my own potential. Practical datasets and patient doubt resolution made all the difference.",
+    batch: "Power BI Industrial Training",
+    screenshot: "/assets/reviews/WhatsApp Image 2026-11-02 at 4.02.24 PM.jpeg",
+  },
+  {
+    name: "Prachi",
+    course: "Professional Workshop Cohort",
+    quote: "A heartfelt thank you to Deepika Ma'am and the entire SKD team for this wonderful opportunity. It was a lovely journey, and I'm grateful to have been a part of it. Looking forward to more such opportunities!",
+    batch: "Workshop Cohort",
+    screenshot: "/assets/reviews/WhatsApp Image 2026-11-19 at 4.33.43 PM.jpeg",
+  },
 ];
 
 const resultImages = [
-  "/assets/results/Enhanced_Photo_01.jpg",
-  "/assets/results/Enhanced_Photo_02.jpg",
-  "/assets/results/Enhanced_Photo_03.jpg",
-  "/assets/results/Enhanced_Photo_04.jpg",
-  "/assets/results/Enhanced_Photo_05.jpg",
   "/assets/results/Enhanced_Photo_06.jpg",
-  "/assets/results/Enhanced_Photo_07.jpg",
-  "/assets/results/Enhanced_Photo_08.jpg",
   "/assets/results/Enhanced_Photo_09.jpg",
-  "/assets/results/Enhanced_Photo_10.jpg",
-  "/assets/results/Enhanced_Photo_11.jpg",
-  "/assets/results/Enhanced_Photo_12.jpg",
+  "/assets/results/12d5089e-a65b-45a2-881c-3e7ab19cdccb.png",
+  "/assets/results/187e7fbd-dbbf-4fb9-ad04-8b804b08cd4a.png",
+  "/assets/results/124f5707-11e4-41ed-9e3c-dfa29fae004e.png",
+  "/assets/results/21581df1-bbb3-4253-9c19-06955675ad67.png",
+  "/assets/results/3ff74f5f-3433-46d9-803f-7c827451580a.png",
+  "/assets/results/42e1ca98-e30f-471e-beee-a9013f84468a.png",
+  "/assets/results/4560808a-676d-4f33-82b7-3d487998f1d1.png",
+  "/assets/results/6ce7a758-7957-4ae6-aafb-986a2b1848ef.png",
+  "/assets/results/9d05a731-69ed-4510-9791-8188adb436c0.png",
+  "/assets/results/c67e9637-d098-402c-8453-71a55c6df85a.png",
 ];
 
 const classroomImages = [
@@ -58,18 +162,25 @@ const classroomImages = [
   "/assets/classroom/4.png",
   "/assets/classroom/5.png",
   "/assets/classroom/6.png",
-  "/assets/seminar/Enhanced_Photo_01.jpg",
-  "/assets/seminar/Enhanced_Photo_02.jpg",
-  "/assets/seminar/Enhanced_Photo_03.jpg",
-  "/assets/seminar/Enhanced_Photo_04.jpg",
-  "/assets/seminar/Enhanced_Photo_05.jpg",
-  "/assets/seminar/Enhanced_Photo_06.jpg",
+  "/assets/seminar/539522c2-f240-423e-864f-71f7c49a998b.png",
+  "/assets/seminar/8a31514b-3bf3-41a1-a7ab-d435122617d1.png",
+  "/assets/seminar/8bb597be-16eb-4192-be3c-eb62aa25e65b.png",
+  "/assets/seminar/a149252f-1ae6-4d80-a80f-a6ac164e1c9d.png",
+  "/assets/seminar/b705ed92-b362-426d-83bf-f3c0bcc4f539.png",
+  "/assets/seminar/fd167125-44d5-469f-94e6-6ca26ef286bd.png",
 ];
 
 const resultVideos = [
   "/assets/videos/results/WhatsApp Video 2026-11-19 at 3.44.52 PM.mp4",
   "/assets/videos/results/WhatsApp Video 2026-11-19 at 3.44.52 PM1.mp4",
   "/assets/videos/results/WhatsApp Video 2026-11-19 at 3.45.11 PM.mp4",
+];
+
+const workshopVideos = [
+  { src: "/assets/videos/reviews/new video.mp4", label: "Student Session Review" },
+  { src: "/assets/videos/reviews/new one.mp4", label: "Workshop Experience" },
+  { src: "/assets/videos/reviews/WhatsApp Video 2026-11-02 at 4.12.29 PM.mp4", label: "Lecture & Training Feedback" },
+  { src: "/assets/videos/reviews/WhatsApp Video 2026-11-19 at 4.24.55 PM.mp4", label: "Classroom Student Feedback" },
 ];
 
 // ─── Image Lightbox ───────────────────────────────────────────────────────────
@@ -106,8 +217,8 @@ function ImageLightbox({
         <ChevronLeft className="w-5 h-5" />
       </button>
       <div className="relative max-w-4xl max-h-[88vh] w-full" onClick={(e) => e.stopPropagation()}>
-        <Image src={images[idx]} alt={`Image ${idx + 1}`} width={1200} height={900} className="rounded-2xl object-contain max-h-[88vh] w-auto mx-auto" unoptimized />
-        <p className="text-center mt-3 text-white/40 text-xs">{idx + 1} / {images.length}</p>
+        <Image src={images[idx]} alt={`SKD Media ${idx + 1}`} width={1200} height={900} className="rounded-2xl object-contain max-h-[88vh] w-auto mx-auto" unoptimized />
+        <p className="text-center mt-3 text-white/50 text-xs">{idx + 1} of {images.length} · SKD Group Official Records</p>
       </div>
       <button onClick={(e) => { e.stopPropagation(); next(); }} className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
         <ChevronRight className="w-5 h-5" />
@@ -117,10 +228,9 @@ function ImageLightbox({
 }
 
 // ─── Inline Video Player Card ─────────────────────────────────────────────────
-// Videos play directly inside the card — no navigation, no new tab.
 
 interface VideoCardProps {
-  video: { src: string; name: string; course: string };
+  video: { src: string; name: string; course: string; batch?: string };
   isActive: boolean;
   isSide: boolean;
   onActivate: () => void;
@@ -139,7 +249,6 @@ function VideoCard({ video, isActive, isSide, onActivate, playingId, setPlayingI
 
   const videoId = video.src;
 
-  // Pause when another video starts or this card becomes inactive
   useEffect(() => {
     if (playingId !== videoId && videoRef.current && isPlaying) {
       videoRef.current.pause();
@@ -184,8 +293,8 @@ function VideoCard({ video, isActive, isSide, onActivate, playingId, setPlayingI
   };
 
   const handleFullscreen = () => {
-    if (videoRef.current) {
-      if (videoRef.current.requestFullscreen) videoRef.current.requestFullscreen();
+    if (videoRef.current && videoRef.current.requestFullscreen) {
+      videoRef.current.requestFullscreen();
     }
   };
 
@@ -214,11 +323,10 @@ function VideoCard({ video, isActive, isSide, onActivate, playingId, setPlayingI
       }}
       className={`relative flex-shrink-0 rounded-2xl overflow-hidden bg-[#0d1724] ${
         isActive
-          ? "ring-2 ring-[#2855E8]/60 shadow-[0_8px_48px_rgba(40,85,232,0.25)]"
+          ? "ring-2 ring-[#3659D9]/70 shadow-[0_12px_48px_rgba(54,89,217,0.3)]"
           : "ring-1 ring-white/10 shadow-lg"
       }`}
     >
-      {/* Video element — plays inline, stays on page */}
       <div className="relative w-full" style={{ aspectRatio: "16/9" }}>
         {!error ? (
           <video
@@ -238,7 +346,6 @@ function VideoCard({ video, isActive, isSide, onActivate, playingId, setPlayingI
           </div>
         )}
 
-        {/* Play / Pause overlay — only shows when not playing or on hover */}
         {!error && (
           <button
             onClick={handlePlay}
@@ -252,14 +359,13 @@ function VideoCard({ video, isActive, isSide, onActivate, playingId, setPlayingI
               isActive ? "w-14 h-14" : "w-10 h-10"
             }`}>
               {isPlaying
-                ? <Pause className={`text-[#2855E8] fill-[#2855E8] ${isActive ? "w-6 h-6" : "w-4 h-4"}`} />
-                : <Play className={`text-[#2855E8] fill-[#2855E8] ml-0.5 ${isActive ? "w-6 h-6" : "w-4 h-4"}`} />
+                ? <Pause className={`text-[#3659D9] fill-[#3659D9] ${isActive ? "w-6 h-6" : "w-4 h-4"}`} />
+                : <Play className={`text-[#3659D9] fill-[#3659D9] ml-0.5 ${isActive ? "w-6 h-6" : "w-4 h-4"}`} />
               }
             </div>
           </button>
         )}
 
-        {/* Loading spinner */}
         {!loaded && !error && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" />
@@ -267,22 +373,19 @@ function VideoCard({ video, isActive, isSide, onActivate, playingId, setPlayingI
         )}
       </div>
 
-      {/* Controls bar — only on active card */}
       {isActive && loaded && !error && (
         <div className="bg-[#0d1724]/95 px-4 py-2.5 flex flex-col gap-2">
-          {/* Progress bar */}
           <div
             className="w-full h-1.5 bg-white/15 rounded-full cursor-pointer group"
             onClick={handleSeek}
           >
             <div
-              className="h-full bg-[#2855E8] rounded-full transition-all duration-100 relative"
+              className="h-full bg-[#3659D9] rounded-full transition-all duration-100 relative"
               style={{ width: `${progress}%` }}
             >
               <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
           </div>
-          {/* Time + controls */}
           <div className="flex items-center justify-between">
             <span className="text-white/50 text-[11px] tabular-nums">
               {formatTime(videoRef.current?.currentTime ?? 0)} / {formatTime(duration)}
@@ -299,18 +402,17 @@ function VideoCard({ video, isActive, isSide, onActivate, playingId, setPlayingI
         </div>
       )}
 
-      {/* Student info footer */}
       {isActive && (
         <div className="bg-[#0a1120] px-4 py-3 flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-[#2855E8] flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+          <div className="w-9 h-9 rounded-full bg-[#3659D9] flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
             {video.name.charAt(0)}
           </div>
           <div className="min-w-0">
             <p className="text-white font-semibold text-sm truncate">{video.name}</p>
-            <p className="text-[#DCA43A] text-xs font-medium">{video.course} · SKD Group</p>
+            <p className="text-[#D8C6AA] text-xs font-medium truncate">{video.course}</p>
           </div>
-          <div className="ml-auto text-[10px] font-bold text-[#DCA43A] bg-[#DCA43A]/10 border border-[#DCA43A]/20 px-2 py-1 rounded-full whitespace-nowrap flex-shrink-0">
-            Verified
+          <div className="ml-auto text-[10px] font-bold text-[#D8C6AA] bg-[#D8C6AA]/10 border border-[#D8C6AA]/20 px-2 py-1 rounded-full whitespace-nowrap flex-shrink-0">
+            Verified ACCA
           </div>
         </div>
       )}
@@ -341,7 +443,6 @@ function VideoCarousel() {
     setActive(i);
   };
 
-  // Keyboard nav
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") prev();
@@ -351,7 +452,6 @@ function VideoCarousel() {
     return () => window.removeEventListener("keydown", h);
   }, [prev, next]);
 
-  // Touch swipe
   const onTouchStart = (e: TouchEvent<HTMLDivElement>) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -371,9 +471,7 @@ function VideoCarousel() {
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {/* Cards row */}
       <div className="flex items-center justify-center gap-4 md:gap-6 px-4 py-6">
-        {/* LEFT side card */}
         <div className="hidden sm:block flex-shrink-0 w-64 md:w-80">
           <VideoCard
             video={accaVideos[leftIdx]}
@@ -385,8 +483,7 @@ function VideoCarousel() {
           />
         </div>
 
-        {/* CENTER active card */}
-        <div className="flex-shrink-0 w-full sm:w-80 md:w-[460px] max-w-[500px]">
+        <div className="flex-shrink-0 w-full sm:w-80 md:w-[480px] max-w-[520px]">
           <VideoCard
             video={accaVideos[active]}
             isActive={true}
@@ -397,7 +494,6 @@ function VideoCarousel() {
           />
         </div>
 
-        {/* RIGHT side card */}
         <div className="hidden sm:block flex-shrink-0 w-64 md:w-80">
           <VideoCard
             video={accaVideos[rightIdx]}
@@ -410,8 +506,7 @@ function VideoCarousel() {
         </div>
       </div>
 
-      {/* Nav row */}
-      <div className="flex items-center justify-center gap-4 mt-1">
+      <div className="flex items-center justify-center gap-4 mt-2">
         <button
           onClick={prev}
           aria-label="Previous testimonial"
@@ -430,7 +525,7 @@ function VideoCarousel() {
               <span
                 className={`block rounded-full transition-all duration-300 ${
                   i === active
-                    ? "w-7 h-2.5 bg-[#2855E8]"
+                    ? "w-7 h-2.5 bg-[#3659D9]"
                     : "w-2.5 h-2.5 bg-white/25 hover:bg-white/50"
                 }`}
               />
@@ -450,40 +545,126 @@ function VideoCarousel() {
   );
 }
 
-// ─── Review Grid ──────────────────────────────────────────────────────────────
+// ─── Analyzed Real Reviews Tab ────────────────────────────────────────────────
 
-function ReviewGrid() {
+function AnalyzedReviewsTab() {
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+  const [viewMode, setViewMode] = useState<"cards" | "screenshots">("cards");
+
   return (
-    <>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-        {reviewImages.map((src, i) => (
-          <button
-            key={i}
-            onClick={() => setLightboxIdx(i)}
-            className="group relative aspect-[4/3] rounded-xl overflow-hidden bg-white/5 ring-1 ring-white/10 hover:ring-[#2855E8]/60 transition-all duration-300 hover:-translate-y-0.5"
-          >
-            <Image
-              src={src}
-              alt={`Student review ${i + 1}`}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-              unoptimized
-            />
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all" />
-          </button>
-        ))}
+    <div className="space-y-8">
+      {/* View Mode Switcher */}
+      <div className="flex justify-center gap-2">
+        <button
+          type="button"
+          onClick={() => setViewMode("cards")}
+          className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            viewMode === "cards"
+              ? "bg-[#3659D9] text-white shadow-md shadow-[#3659D9]/30"
+              : "bg-white/5 text-white/60 hover:text-white border border-white/10"
+          }`}
+        >
+          Verified Student Quotes ({studentReviewsData.length})
+        </button>
+        <button
+          type="button"
+          onClick={() => setViewMode("screenshots")}
+          className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            viewMode === "screenshots"
+              ? "bg-[#3659D9] text-white shadow-md shadow-[#3659D9]/30"
+              : "bg-white/5 text-white/60 hover:text-white border border-white/10"
+          }`}
+        >
+          Original Screenshots & Chats ({reviewScreenshots.length})
+        </button>
       </div>
-      {lightboxIdx !== null && (
-        <ImageLightbox images={reviewImages} startIndex={lightboxIdx} onClose={() => setLightboxIdx(null)} />
+
+      {/* Cards View */}
+      {viewMode === "cards" && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {studentReviewsData.map((review, i) => (
+            <div
+              key={i}
+              className="bg-[#0e1726] border border-white/10 hover:border-[#3659D9]/50 rounded-2xl p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 shadow-md"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex gap-0.5">
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <Star key={s} className="w-3.5 h-3.5 fill-[#D8C6AA] text-[#D8C6AA]" />
+                    ))}
+                  </div>
+                  <span className="inline-flex items-center text-[10px] font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
+                    <ShieldCheck className="w-3 h-3 mr-1" />
+                    Verified
+                  </span>
+                </div>
+
+                <p className="text-white/80 text-sm leading-relaxed italic mb-4">
+                  &ldquo;{review.quote}&rdquo;
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-white/8 flex items-center justify-between">
+                <div>
+                  <h4 className="text-white font-bold text-sm">{review.name}</h4>
+                  <p className="text-[#3659D9] text-xs font-semibold">{review.course}</p>
+                  <p className="text-white/40 text-[11px] mt-0.5">{review.batch}</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const idx = reviewScreenshots.indexOf(review.screenshot);
+                    setLightboxIdx(idx >= 0 ? idx : 0);
+                  }}
+                  className="text-[11px] text-[#D8C6AA] hover:underline whitespace-nowrap ml-2"
+                >
+                  View Proof ↗
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       )}
-    </>
+
+      {/* Screenshots View */}
+      {viewMode === "screenshots" && (
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+          {reviewScreenshots.map((src, i) => (
+            <button
+              key={i}
+              onClick={() => setLightboxIdx(i)}
+              className="group relative aspect-[4/3] rounded-xl overflow-hidden bg-white/5 ring-1 ring-white/10 hover:ring-[#3659D9]/60 transition-all duration-300 hover:-translate-y-0.5"
+            >
+              <Image
+                src={src}
+                alt={`Student review proof ${i + 1}`}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                unoptimized
+              />
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all" />
+              <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between pointer-events-none">
+                <span className="text-[10px] bg-black/70 backdrop-blur-md text-white px-2 py-0.5 rounded-full font-medium">
+                  Verified Proof
+                </span>
+                <span className="text-[10px] text-white/70">Click to zoom</span>
+              </div>
+            </button>
+          ))}
+        </div>
+      )}
+
+      {lightboxIdx !== null && (
+        <ImageLightbox images={reviewScreenshots} startIndex={lightboxIdx} onClose={() => setLightboxIdx(null)} />
+      )}
+    </div>
   );
 }
 
-// ─── Results Grid ─────────────────────────────────────────────────────────────
+// ─── Results Tab ──────────────────────────────────────────────────────────────
 
-function ResultsGrid() {
+function ResultsTab() {
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
   const [playingVideo, setPlayingVideo] = useState<string | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
@@ -500,90 +681,227 @@ function ResultsGrid() {
   };
 
   return (
-    <>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-5">
-        {resultImages.map((src, i) => (
-          <button
-            key={i}
-            onClick={() => setLightboxIdx(i)}
-            className="group relative aspect-[4/3] rounded-xl overflow-hidden bg-white/5 ring-1 ring-white/10 hover:ring-[#DCA43A]/50 transition-all duration-300 hover:-translate-y-0.5"
-          >
-            <Image src={src} alt={`Result ${i + 1}`} fill className="object-cover transition-transform duration-500 group-hover:scale-105" unoptimized />
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all" />
-          </button>
-        ))}
+    <div className="space-y-8">
+      {/* Featured Merit Rankers */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="relative rounded-2xl overflow-hidden border border-[#D8C6AA]/30 bg-[#0e1726] p-6 shadow-xl">
+          <div className="flex items-center gap-2 mb-3">
+            <Award className="w-5 h-5 text-[#D8C6AA]" />
+            <span className="text-xs font-bold uppercase tracking-wider text-[#D8C6AA]">
+              ACCA Top Scorer — October Attempt
+            </span>
+          </div>
+          <h3 className="text-2xl font-extrabold text-white">Arshpreet Kaur</h3>
+          <p className="text-[#3659D9] text-sm font-semibold mt-1">Financial Accounting (FA) & SBR Milestone</p>
+          <p className="text-white/60 text-xs mt-2 leading-relaxed">
+            Congratulations on your outstanding result! Hard work, dedication, and consistency paid off at SKD Group of Institutions.
+          </p>
+          <div className="mt-4 flex items-center gap-3">
+            <button
+              onClick={() => setLightboxIdx(0)}
+              className="px-4 py-2 bg-[#D8C6AA] text-[#172238] font-bold text-xs rounded-xl hover:bg-white transition-all shadow-md"
+            >
+              View Official Scorecard ↗
+            </button>
+          </div>
+        </div>
+
+        <div className="relative rounded-2xl overflow-hidden border border-[#D8C6AA]/30 bg-[#0e1726] p-6 shadow-xl">
+          <div className="flex items-center gap-2 mb-3">
+            <Award className="w-5 h-5 text-[#D8C6AA]" />
+            <span className="text-xs font-bold uppercase tracking-wider text-[#D8C6AA]">
+              ACCA High Scorer — October Attempt
+            </span>
+          </div>
+          <h3 className="text-2xl font-extrabold text-white">Hitesh Goyal</h3>
+          <p className="text-[#3659D9] text-sm font-semibold mt-1">Financial Accounting (FA) High Clearance</p>
+          <p className="text-white/60 text-xs mt-2 leading-relaxed">
+            Recognized for outstanding preparation on computer-based exam practice and mock test mastery at SKD CBE Centre.
+          </p>
+          <div className="mt-4 flex items-center gap-3">
+            <button
+              onClick={() => setLightboxIdx(1)}
+              className="px-4 py-2 bg-[#D8C6AA] text-[#172238] font-bold text-xs rounded-xl hover:bg-white transition-all shadow-md"
+            >
+              View Official Scorecard ↗
+            </button>
+          </div>
+        </div>
       </div>
 
-      {/* Result Videos — inline playback */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
-        {resultVideos.map((src, i) => (
-          <div key={i} className="relative rounded-xl overflow-hidden bg-[#0d1724] ring-1 ring-white/10">
-            <div className="relative" style={{ aspectRatio: "16/9" }}>
-              <video
-                ref={(el) => { videoRefs.current[i] = el; }}
-                src={src}
-                className="w-full h-full object-cover"
-                playsInline
-                preload="metadata"
-                controls={playingVideo === src}
-                onEnded={() => setPlayingVideo(null)}
-              />
-              {playingVideo !== src && (
-                <button
-                  onClick={() => handleVideoClick(src, i)}
-                  className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/20 transition-colors group"
-                >
-                  <div className="w-12 h-12 rounded-full bg-[#DCA43A] flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
-                    <Play className="w-5 h-5 fill-white text-white ml-0.5" />
-                  </div>
-                </button>
-              )}
+      {/* Results Scorecards Grid */}
+      <div>
+        <h4 className="text-sm font-bold text-white/80 uppercase tracking-widest mb-4">
+          All Verified Scorecards & Clearance Proofs ({resultImages.length})
+        </h4>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+          {resultImages.map((src, i) => (
+            <button
+              key={i}
+              onClick={() => setLightboxIdx(i)}
+              className="group relative aspect-[4/3] rounded-xl overflow-hidden bg-white/5 ring-1 ring-white/10 hover:ring-[#D8C6AA]/60 transition-all duration-300 hover:-translate-y-0.5"
+            >
+              <Image src={src} alt={`Result scorecard ${i + 1}`} fill className="object-cover transition-transform duration-500 group-hover:scale-105" unoptimized />
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all" />
+              <span className="absolute bottom-2 left-2 text-[10px] bg-black/70 backdrop-blur-md text-white px-2 py-0.5 rounded-full font-medium">
+                Verified Result
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Result Celebration Videos */}
+      <div>
+        <h4 className="text-sm font-bold text-white/80 uppercase tracking-widest mb-4">
+          Result Celebration & Student Moments ({resultVideos.length})
+        </h4>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {resultVideos.map((src, i) => (
+            <div key={i} className="relative rounded-xl overflow-hidden bg-[#0d1724] ring-1 ring-white/10">
+              <div className="relative" style={{ aspectRatio: "16/9" }}>
+                <video
+                  ref={(el) => { videoRefs.current[i] = el; }}
+                  src={src}
+                  className="w-full h-full object-cover"
+                  playsInline
+                  preload="metadata"
+                  controls={playingVideo === src}
+                  onEnded={() => setPlayingVideo(null)}
+                />
+                {playingVideo !== src && (
+                  <button
+                    onClick={() => handleVideoClick(src, i)}
+                    className="absolute inset-0 flex items-center justify-center bg-black/35 hover:bg-black/20 transition-colors group"
+                  >
+                    <div className="w-12 h-12 rounded-full bg-[#D8C6AA] flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                      <Play className="w-5 h-5 fill-[#172238] text-[#172238] ml-0.5" />
+                    </div>
+                  </button>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {lightboxIdx !== null && (
         <ImageLightbox images={resultImages} startIndex={lightboxIdx} onClose={() => setLightboxIdx(null)} />
       )}
-    </>
+    </div>
   );
 }
 
-// ─── Campus Grid ──────────────────────────────────────────────────────────────
+// ─── Campus & Seminars Tab ────────────────────────────────────────────────────
 
-function CampusGrid() {
+function CampusTab() {
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+
   return (
-    <>
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <h4 className="text-sm font-bold text-white/80 uppercase tracking-widest">
+          Classroom & Seminar Moments at Godrej Eternia ({classroomImages.length})
+        </h4>
+        <span className="text-xs text-white/40">Click any photo for high-resolution view</span>
+      </div>
+
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
         {classroomImages.map((src, i) => (
           <button
             key={i}
             onClick={() => setLightboxIdx(i)}
-            className="group relative aspect-video rounded-xl overflow-hidden bg-white/5 ring-1 ring-white/10 hover:ring-emerald-400/40 transition-all duration-300 hover:-translate-y-0.5"
+            className="group relative aspect-video rounded-xl overflow-hidden bg-white/5 ring-1 ring-white/10 hover:ring-[#3659D9]/50 transition-all duration-300 hover:-translate-y-0.5"
           >
-            <Image src={src} alt={`Campus ${i + 1}`} fill className="object-cover transition-transform duration-500 group-hover:scale-105" unoptimized />
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all" />
+            <Image src={src} alt={`Campus photo ${i + 1}`} fill className="object-cover transition-transform duration-500 group-hover:scale-105" unoptimized />
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all" />
+            <span className="absolute bottom-2 left-2 text-[10px] bg-black/70 backdrop-blur-md text-white px-2 py-0.5 rounded-full font-medium">
+              {i < 6 ? "Classroom Lab" : "Student Seminar"}
+            </span>
           </button>
         ))}
       </div>
+
       {lightboxIdx !== null && (
         <ImageLightbox images={classroomImages} startIndex={lightboxIdx} onClose={() => setLightboxIdx(null)} />
       )}
-    </>
+    </div>
   );
 }
 
-// ─── Tab types ────────────────────────────────────────────────────────────────
+// ─── Workshop Videos Tab ──────────────────────────────────────────────────────
 
-type TabId = "videos" | "reviews" | "results" | "campus";
+function WorkshopVideosTab() {
+  const [playingVideo, setPlayingVideo] = useState<string | null>(null);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
-const TABS: { id: TabId; label: string }[] = [
-  { id: "videos", label: "Student Testimonials" },
-  { id: "reviews", label: "Reviews" },
-  { id: "results", label: "Exam Results" },
-  { id: "campus", label: "Campus Life" },
+  const handleVideoClick = (src: string, idx: number) => {
+    if (playingVideo === src) {
+      videoRefs.current[idx]?.pause();
+      setPlayingVideo(null);
+    } else {
+      videoRefs.current.forEach((v, i) => { if (i !== idx && v) v.pause(); });
+      videoRefs.current[idx]?.play().catch(() => {});
+      setPlayingVideo(src);
+    }
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="text-center max-w-xl mx-auto mb-6">
+        <p className="text-white/60 text-sm">
+          Watch unedited classroom reviews and workshop sessions recorded during our industrial training and internship programs.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {workshopVideos.map((v, i) => (
+          <div key={i} className="relative rounded-2xl overflow-hidden bg-[#0d1724] ring-1 ring-white/10 shadow-xl">
+            <div className="relative" style={{ aspectRatio: "16/9" }}>
+              <video
+                ref={(el) => { videoRefs.current[i] = el; }}
+                src={v.src}
+                className="w-full h-full object-cover"
+                playsInline
+                preload="metadata"
+                controls={playingVideo === v.src}
+                onEnded={() => setPlayingVideo(null)}
+              />
+              {playingVideo !== v.src && (
+                <button
+                  onClick={() => handleVideoClick(v.src, i)}
+                  className="absolute inset-0 flex flex-col items-center justify-center bg-black/35 hover:bg-black/20 transition-colors group"
+                >
+                  <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center group-hover:scale-110 transition-transform shadow-xl">
+                    <Play className="w-6 h-6 fill-[#3659D9] text-[#3659D9] ml-1" />
+                  </div>
+                  <span className="mt-3 text-white text-xs font-semibold bg-black/60 px-3 py-1 rounded-full backdrop-blur-md">
+                    {v.label}
+                  </span>
+                </button>
+              )}
+            </div>
+            <div className="p-4 bg-[#0a1120] flex items-center justify-between">
+              <span className="text-white font-medium text-sm">{v.label}</span>
+              <span className="text-xs text-[#D8C6AA] font-bold">15-Day Workshop</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── Tab definitions ──────────────────────────────────────────────────────────
+
+type TabId = "videos" | "reviews" | "results" | "campus" | "workshops";
+
+const TABS: { id: TabId; label: string; badge?: string }[] = [
+  { id: "videos", label: "ACCA Video Stories", badge: "6 Videos" },
+  { id: "reviews", label: "Student Reviews", badge: "12 Reviews" },
+  { id: "results", label: "Exam Results & Scorecards", badge: "Rankers" },
+  { id: "campus", label: "Classroom & Campus Life", badge: "12 Photos" },
+  { id: "workshops", label: "Workshop Reviews", badge: "4 Videos" },
 ];
 
 // ─── Main Section ─────────────────────────────────────────────────────────────
@@ -592,66 +910,72 @@ export default function SocialProofSection() {
   const [activeTab, setActiveTab] = useState<TabId>("videos");
 
   return (
-    <section className="relative py-16 sm:py-24 bg-[#080f1e] overflow-hidden">
-      {/* Background atmosphere */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-[#2855E8]/8 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[500px] h-[300px] bg-[#DCA43A]/5 rounded-full blur-[100px] pointer-events-none" />
+    <section className="relative py-16 sm:py-24 bg-[#080f1e] overflow-hidden border-b border-white/8">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-[#3659D9]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[500px] h-[300px] bg-[#D8C6AA]/8 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
         {/* Header */}
         <div className="text-center mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2.5 mb-5">
-            <span className="w-10 h-px bg-[#2855E8]/60" />
-            <span className="text-[#2855E8] text-[11px] font-bold tracking-[0.25em] uppercase">Real Stories</span>
-            <span className="w-10 h-px bg-[#2855E8]/60" />
+            <span className="w-10 h-px bg-[#3659D9]/60" />
+            <span className="text-[#3659D9] text-[11px] font-bold tracking-[0.25em] uppercase">Verified Social Proof</span>
+            <span className="w-10 h-px bg-[#3659D9]/60" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
-            Student Reviews — Hear from
+            Student Reviews & Verified Proof —
             <br />
-            <em className="not-italic text-[#2855E8] font-bold">Our Alumni</em>
+            <em className="not-italic text-[#3659D9] font-bold">Hear from Our Alumni</em>
           </h2>
-          <p className="mt-4 text-white/45 text-base max-w-lg mx-auto leading-relaxed">
-            Real voices, real journeys. Watch how SKD students achieved their career milestones.
+          <p className="mt-4 text-white/55 text-base max-w-xl mx-auto leading-relaxed">
+            Authentic video testimonials, genuine written feedback, official exam scorecards, and campus moments directly from SKD students.
           </p>
         </div>
 
         {/* Tab nav */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
           {TABS.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-5 py-2 rounded-full text-sm font-semibold border transition-all duration-200 ${
+              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border transition-all duration-200 inline-flex items-center gap-2 ${
                 activeTab === tab.id
-                  ? "bg-[#2855E8] border-[#2855E8] text-white shadow-lg shadow-[#2855E8]/20"
-                  : "border-white/12 text-white/45 hover:text-white/80 hover:border-white/25 bg-transparent"
+                  ? "bg-[#3659D9] border-[#3659D9] text-white shadow-lg shadow-[#3659D9]/30"
+                  : "border-white/15 text-white/60 hover:text-white hover:border-white/30 bg-transparent"
               }`}
             >
-              {tab.label}
+              <span>{tab.label}</span>
+              {tab.badge && (
+                <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
+                  activeTab === tab.id ? "bg-white/20 text-white" : "bg-white/10 text-white/50"
+                }`}>
+                  {tab.badge}
+                </span>
+              )}
             </button>
           ))}
         </div>
 
         {/* Tab content */}
-        <div className="min-h-[320px]">
+        <div className="min-h-[400px]">
           {activeTab === "videos" && <VideoCarousel />}
-          {activeTab === "reviews" && <ReviewGrid />}
-          {activeTab === "results" && <ResultsGrid />}
-          {activeTab === "campus" && <CampusGrid />}
+          {activeTab === "reviews" && <AnalyzedReviewsTab />}
+          {activeTab === "results" && <ResultsTab />}
+          {activeTab === "campus" && <CampusTab />}
+          {activeTab === "workshops" && <WorkshopVideosTab />}
         </div>
 
         {/* Stats strip */}
-        <div className="mt-14 grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-white/8 border border-white/8 rounded-2xl overflow-hidden">
+        <div className="mt-14 grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-white/8 border border-white/8 rounded-2xl overflow-hidden bg-white/[0.02]">
           {[
             { value: "500+", label: "Students Enrolled" },
-            { value: "95%", label: "First-Attempt Pass Rate" },
-            { value: "4.9★", label: "Google Rating" },
-            { value: "10+ Yrs", label: "Of Excellence" },
+            { value: "85%+", label: "Batch Pass Rate" },
+            { value: "4.9★", label: "Verified Rating" },
+            { value: "Silver ALP", label: "Approved ACCA Status" },
           ].map((stat, i) => (
-            <div key={i} className="bg-white/[0.03] hover:bg-white/[0.06] transition-colors px-6 py-6 text-center">
-              <div className="text-2xl font-extrabold text-[#2855E8]">{stat.value}</div>
-              <div className="text-[11px] text-white/35 font-medium mt-1 uppercase tracking-widest">{stat.label}</div>
+            <div key={i} className="px-6 py-6 text-center">
+              <div className="text-2xl font-extrabold text-[#3659D9]">{stat.value}</div>
+              <div className="text-[11px] text-white/45 font-medium mt-1 uppercase tracking-widest">{stat.label}</div>
             </div>
           ))}
         </div>
