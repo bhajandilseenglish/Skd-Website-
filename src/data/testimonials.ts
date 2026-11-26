@@ -99,7 +99,7 @@ export const testimonialsData: Testimonial[] = [
     course: "Advanced Excel (15-Day Internship)",
     achievement: "Practical Business Functions & Formulas Certification",
     city: "Chandigarh",
-    image: "/assets/reviews/WhatsApp Image 2026-11-19 at 4.27.01 PM.jpeg",
+    image: "/assets/reviews/WhatsApp Image 2026-11-19 at 4.26.33 PM.jpeg",
     quote:
       "The 15-day Advanced Excel internship was a great learning experience. I learned many useful Excel functions and improved my practical knowledge. The sessions were informative, easy to understand, and helpful for my future career. I appreciate this wonderful opportunity!",
     verified: true,
@@ -112,7 +112,7 @@ export const testimonialsData: Testimonial[] = [
     course: "Advanced Excel Formulas & Dashboards",
     achievement: "Mastered Advanced Formulas & Automation",
     city: "Chandigarh",
-    image: "/assets/reviews/WhatsApp Image 2026-11-19 at 4.27.01 PM.jpeg",
+    image: "/assets/reviews/WhatsApp Image 2026-11-19 at 4.26.34 PM.jpeg",
     quote:
       "Thank you Ma'am, for teaching Excel so well. Your explanation made even difficult formulas easy. Really grateful for the support and patient mentorship!",
     verified: true,
@@ -125,7 +125,7 @@ export const testimonialsData: Testimonial[] = [
     course: "Data Analytics (60 Hours Industrial Training)",
     achievement: "Business Data Analysis Certified",
     city: "Chandigarh",
-    image: "/assets/reviews/WhatsApp Image 2026-11-02 at 4.02.23 PM (2).jpeg",
+    image: "/assets/reviews/WhatsApp Image 2026-11-02 at 4.02.33 PM.jpeg",
     quote:
       "It was a great learning journey. The content was excellent, and the sessions were incredibly helpful. Hands-on datasets made the analytical concepts come alive.",
     verified: true,
@@ -138,7 +138,7 @@ export const testimonialsData: Testimonial[] = [
     course: "Advanced Excel (15-Day Training)",
     achievement: "Enhanced Technical & Spreadsheet Competency",
     city: "Chandigarh",
-    image: "/assets/reviews/WhatsApp Image 2026-11-19 at 4.27.01 PM.jpeg",
+    image: "/assets/reviews/WhatsApp Image 2026-11-19 at 4.26.36 PM.jpeg",
     quote:
       "Thank you team SKD for this excellent 15-day advanced excel training. The sessions were informative and practical helping me enhance my excel skills and technical knowledge. It was a valuable learning experience and I truly appreciate this opportunity.",
     verified: true,
@@ -151,7 +151,7 @@ export const testimonialsData: Testimonial[] = [
     course: "Advanced Excel in Business",
     achievement: "Business Case Modeling Certification",
     city: "Panchkula",
-    image: "/assets/reviews/WhatsApp Image 2026-11-19 at 4.27.01 PM.jpeg",
+    image: "/assets/reviews/WhatsApp Image 2026-11-19 at 4.27.00 PM.jpeg",
     quote:
       "Thank you so much for providing us with this wonderful session. The session was quite interactive, informative, and easy to understand. It showed us exactly how Excel works in real business scenarios.",
     verified: true,
@@ -177,7 +177,7 @@ export const testimonialsData: Testimonial[] = [
     course: "Power BI Dashboards & Reports",
     achievement: "Data Modeling & Visualization Certified",
     city: "Chandigarh",
-    image: "/assets/reviews/WhatsApp Image 2026-11-02 at 4.02.24 PM.jpeg",
+    image: "/assets/reviews/WhatsApp Image 2026-11-19 at 4.23.54 PM.jpeg",
     quote:
       "This training truly helped me grow, gain confidence, and believe in my own potential. Practical datasets and patient doubt resolution made all the difference.",
     verified: true,
@@ -203,7 +203,7 @@ export const testimonialsData: Testimonial[] = [
     course: "ACCA (Global Chartered Accountant)",
     achievement: "Featured Video Testimonial & ACCA Scholar",
     city: "Chandigarh",
-    image: "/assets/classroom/1.png",
+    image: "/assets/reviews/f7b828d6-a87c-42c1-8d52-76ac53e971f4.png",
     quote:
       "SKD Group of Institutions gave me the exact foundation I needed for ACCA. Learning from qualified mentors with real CBE mock exam platforms built complete confidence for my examinations.",
     verified: true,
@@ -216,7 +216,7 @@ export const testimonialsData: Testimonial[] = [
     course: "ACCA (Global Chartered Accountant)",
     achievement: "Featured Video Testimonial & ACCA Scholar",
     city: "Chandigarh",
-    image: "/assets/classroom/2.png",
+    image: "/assets/results/12d5089e-a65b-45a2-881c-3e7ab19cdccb.png",
     quote:
       "The faculty at SKD breaks down the syllabus into manageable milestones. The personal guidance and doubt sessions after every lecture made a massive difference to my preparation.",
     verified: true,
@@ -229,7 +229,7 @@ export const testimonialsData: Testimonial[] = [
     course: "ACCA (Global Chartered Accountant)",
     achievement: "Featured Video Testimonial & ACCA Scholar",
     city: "Chandigarh",
-    image: "/assets/classroom/3.png",
+    image: "/assets/results/124f5707-11e4-41ed-9e3c-dfa29fae004e.png",
     quote:
       "Having mentors who are practicing CAs and ACCA members means you don't just study for the test—you learn how corporate accounting and international audit really work.",
     verified: true,
@@ -242,7 +242,7 @@ export const testimonialsData: Testimonial[] = [
     course: "ACCA (Global Chartered Accountant)",
     achievement: "Featured Video Testimonial & ACCA Scholar",
     city: "Chandigarh",
-    image: "/assets/classroom/4.png",
+    image: "/assets/results/187e7fbd-dbbf-4fb9-ad04-8b804b08cd4a.png",
     quote:
       "The environment at Godrej Eternia campus is motivating and focused. High-speed computer labs and official CBE exam simulation helped me clear my papers comfortably.",
     verified: true,
@@ -255,7 +255,7 @@ export const testimonialsData: Testimonial[] = [
     course: "ACCA (Global Chartered Accountant)",
     achievement: "Featured Video Testimonial & ACCA Scholar",
     city: "Chandigarh",
-    image: "/assets/classroom/5.png",
+    image: "/assets/results/21581df1-bbb3-4253-9c19-06955675ad67.png",
     quote:
       "SKD's disciplined timetable and regular mock examinations took the stress away from my exams. I highly recommend SKD to anyone pursuing global finance careers.",
     verified: true,

@@ -73,17 +73,26 @@ export default function StudentSuccessSection() {
           <Quote className="absolute top-8 right-8 w-28 h-28 text-[#DCA43A]/10 pointer-events-none" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
-            {/* Student / Result Image — 1080x1920 (9:16) vertical frame, full image visible */}
+            {/* Student / Result Image — 1080x1920 (9:16) vertical frame, all images pre-mounted for 0ms instant swap */}
             <div className="lg:col-span-5 relative flex items-center justify-center">
               <div className="relative rounded-2xl overflow-hidden w-full max-w-[280px] sm:max-w-[310px] mx-auto bg-[#0D1A33] shadow-xl border border-white/15">
                 <div className="relative w-full aspect-[9/16]">
-                  <Image
-                    src={activeTestimonial.image || "/assets/results/Enhanced_Photo_06.jpg"}
-                    alt={activeTestimonial.name}
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 1024px) 310px, 310px"
-                  />
+                  {testimonialsData.map((t, idx) => (
+                    <Image
+                      key={t.id}
+                      src={t.image || "/assets/results/Enhanced_Photo_06.jpg"}
+                      alt={t.name}
+                      fill
+                      loading="eager"
+                      priority={idx < 3}
+                      className={`object-contain transition-opacity duration-150 ${
+                        idx === currentIndex
+                          ? "opacity-100 z-10"
+                          : "opacity-0 z-0 pointer-events-none"
+                      }`}
+                      sizes="310px"
+                    />
+                  ))}
                 </div>
               </div>
             </div>
