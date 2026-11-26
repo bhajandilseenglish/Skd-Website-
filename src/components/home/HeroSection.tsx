@@ -28,7 +28,6 @@ export default function HeroSection() {
     <section
       ref={heroRef}
       className="relative overflow-hidden bg-[#F6F4EF] border-b border-black/8"
-      style={{ minHeight: "calc(100vh - 100px)" }}
     >
       {/* ── Subtle atmospheric texture ───────────────────────────────── */}
       <div
@@ -42,7 +41,7 @@ export default function HeroSection() {
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center pt-14 pb-16 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-28">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-10 items-center pt-10 pb-12 sm:pt-14 sm:pb-14 lg:pt-16 lg:pb-16">
 
           {/* ── LEFT: Typography ─────────────────────────────────────── */}
           <div

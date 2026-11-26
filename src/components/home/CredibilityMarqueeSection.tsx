@@ -44,7 +44,7 @@ export default function CredibilityMarqueeSection() {
   return (
     <section id="credibility-section" className="relative overflow-hidden">
       {/* ── PART 1: ACHIEVEMENT SHOWCASE (WARM IVORY) ───────────────────────── */}
-      <div className="bg-[#F6F4EF] py-16 sm:py-22 border-b border-[#172238]/10">
+      <div className="bg-[#F6F4EF] py-10 sm:py-14 border-b border-[#172238]/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
             {metrics.map((item, idx) => {
@@ -111,7 +111,7 @@ export default function CredibilityMarqueeSection() {
       </div>
 
       {/* ── PART 2: PLACEMENT SHOWCASE (DEEP NAVY) ──────────────────────────── */}
-      <div className="bg-[#172238] py-16 sm:py-20 text-white border-b border-white/10">
+      <div className="bg-[#172238] py-12 sm:py-16 text-white border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/8 text-[#D8C6AA] rounded-full text-xs font-bold border border-[#D8C6AA]/25 tracking-wide">
