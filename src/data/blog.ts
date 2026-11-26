@@ -10,6 +10,7 @@ export interface BlogPost {
   };
   summary: string;
   coverImage: string;
+  galleryImages?: { src: string; caption: string }[];
   content: string[]; // Structured paragraphs with markdown/subheadings
   tags: string[];
   metaTitle: string;
@@ -270,6 +271,59 @@ export const blogPostsData: BlogPost[] = [
       "Look for verified student testimonials, clear exam pass rates, and genuine rank holders. Avoid institutes that promise '100% guaranteed passes' or make unrealistic job guarantees.",
       "### 5. Convenient Location & Modern Infrastructure",
       "For tricity students across Chandigarh, Mohali, and Panchkula, accessible infrastructure matters. SKD's campus at Godrej Eternia, Industrial Area Phase 1 provides modern air-conditioned classrooms, high-speed Wi-Fi, finance computer labs, and ample parking.",
+    ],
+  },
+  {
+    slug: "skd-career-seminars-and-finance-workshops-2026",
+    title: "Inside SKD Career Seminars: Empowering Commerce & Finance Students Across North India",
+    category: "Finance Careers",
+    readTime: "5 min read",
+    publishedDate: "November 20, 2026",
+    author: {
+      name: "SKD Academic Outreach Team",
+      role: "Seminars & Career Guidance",
+    },
+    summary:
+      "Highlights from SKD Group of Institutions' interactive career seminars, institutional audit workshops, and college outreach sessions guiding students toward ACCA, CA, US CMA, and US CPA careers.",
+    coverImage: "/assets/seminar/seminar-lecture-2.jpg",
+    galleryImages: [
+      {
+        src: "/assets/seminar/seminar-outreach-1.jpg",
+        caption: "Faculty addressing college students during our commerce & global finance career seminar.",
+      },
+      {
+        src: "/assets/seminar/seminar-lecture-2.jpg",
+        caption: "Interactive lecture hall session covering ACCA, CA, and international corporate finance roadmaps.",
+      },
+      {
+        src: "/assets/seminar/seminar-audit-3.jpg",
+        caption: "Technical seminar on institutional audit, governance frameworks, and practical accounting standards.",
+      },
+      {
+        src: "/assets/seminar/seminar-campus-4.jpg",
+        caption: "School outreach orientation helping senior secondary students plan early finance careers.",
+      },
+      {
+        src: "/assets/seminar/seminar-conference-5.jpg",
+        caption: "Roundtable career counseling and mentorship session in the executive conference hall.",
+      },
+      {
+        src: "/assets/seminar/seminar-hall-6.jpg",
+        caption: "Full-house student participation during our regional finance & accounting awareness drive.",
+      },
+    ],
+    tags: ["SKD Seminars", "Career Workshops", "Finance Outreach", "Chandigarh"],
+    metaTitle: "Inside SKD Career Seminars & Finance Workshops | SKD Group",
+    metaDescription:
+      "Explore photos and takeaways from SKD Group of Institutions' career seminars, institutional audit workshops, and student outreach sessions across Chandigarh and North India.",
+    content: [
+      "At SKD Group of Institutions, guiding students begins well before they step into an examination hall. Throughout the academic year, our senior Chartered Accountants, ACCA members, and corporate finance mentors conduct live career awareness seminars across schools, colleges, and university auditoriums.",
+      "### 1. Bridging the Information Gap for Commerce & Finance Aspirants",
+      "Many talented Class 11, Class 12, and B.Com students are unaware of global qualification pathways such as ACCA, US CMA, and US CPA—or how to combine them seamlessly with their undergraduate degree. Our seminars break down paper exemptions, exam flexibility, and realistic career trajectories in Big 4 and multinational corporations.",
+      "### 2. Practical Audit, Taxation & Governance Workshops",
+      "Beyond career orientation, SKD hosts specialized technical sessions on statutory compliance, institutional audit practices, and real-world financial reporting so students experience how classroom theory translates into corporate practice.",
+      "### 3. Direct Q&A With Qualified Mentors",
+      "Every seminar concludes with an open-floor Q&A and personalized guidance, helping students evaluate whether ACCA, CA, US CMA, or US CPA aligns best with their timeline and career goals.",
     ],
   },
 ];

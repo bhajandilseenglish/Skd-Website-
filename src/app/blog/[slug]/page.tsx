@@ -176,6 +176,36 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           })}
         </div>
 
+        {/* Seminar / Article Photo Gallery */}
+        {post.galleryImages && post.galleryImages.length > 0 && (
+          <div className="space-y-4 pt-4">
+            <h3 className="text-xl sm:text-2xl font-bold text-[#101F3D] pb-2 border-b border-[#E2E8F5]">
+              Seminar & Workshop Photo Highlights
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {post.galleryImages.map((img, i) => (
+                <figure
+                  key={i}
+                  className="bg-white rounded-2xl border border-[#E2E8F5] overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="relative h-64 w-full bg-slate-100">
+                    <Image
+                      src={img.src}
+                      alt={img.caption}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 440px"
+                    />
+                  </div>
+                  <figcaption className="p-3.5 text-xs text-[#66758C] leading-relaxed">
+                    {img.caption}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Tags */}
         <div className="pt-6 border-t border-[#E2E8F5] flex flex-wrap items-center gap-2">
           <span className="text-xs font-bold text-[#66758C]">Tags:</span>

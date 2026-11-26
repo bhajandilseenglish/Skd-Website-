@@ -95,6 +95,79 @@ export default function BlogIndexPage() {
             ))}
           </div>
         </section>
+
+        {/* Seminar Photo Highlights */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-[#F6F4EF] rounded-3xl border border-[#172238]/10 p-6 sm:p-10 space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#3659D9]">
+                  Campus & Outreach Highlights
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#172238] mt-1">
+                  Recent Seminars & Career Workshops
+                </h2>
+                <p className="text-sm text-[#767C88] mt-1">
+                  Snapshots from our student orientation drives, institutional audit workshops, and career counseling seminars.
+                </p>
+              </div>
+              <Link
+                href="/blog/skd-career-seminars-and-finance-workshops-2026"
+                className="inline-flex items-center text-xs font-bold text-[#3659D9] hover:underline shrink-0"
+              >
+                <span>Read Seminar Recap</span>
+                <ArrowRight className="w-3.5 h-3.5 ml-1" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {[
+                {
+                  src: "/assets/seminar/seminar-outreach-1.jpg",
+                  caption: "College career awareness seminar on global finance & accounting",
+                },
+                {
+                  src: "/assets/seminar/seminar-lecture-2.jpg",
+                  caption: "Interactive lecture hall session on ACCA & CA pathways",
+                },
+                {
+                  src: "/assets/seminar/seminar-audit-3.jpg",
+                  caption: "Technical seminar on institutional audit & governance",
+                },
+                {
+                  src: "/assets/seminar/seminar-campus-4.jpg",
+                  caption: "School outreach orientation for aspiring commerce students",
+                },
+                {
+                  src: "/assets/seminar/seminar-conference-5.jpg",
+                  caption: "Roundtable mentorship session in the conference hall",
+                },
+                {
+                  src: "/assets/seminar/seminar-hall-6.jpg",
+                  caption: "Full-house student participation at regional career seminar",
+                },
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white rounded-2xl border border-[#172238]/8 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="relative h-56 w-full bg-slate-100">
+                    <Image
+                      src={item.src}
+                      alt={item.caption}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                    />
+                  </div>
+                  <p className="p-3.5 text-xs font-medium text-[#172238]/80 leading-relaxed">
+                    {item.caption}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );
