@@ -41,7 +41,7 @@ export const facultyData: FacultyMember[] = [
     expertise: ["Direct Tax Laws", "GST & Customs", "Corporate Laws"],
     experience: "12+ Years Professional Tax Practice & Academia",
     bio: "Practicing advocate and Chartered Accountant with specialized mastery over domestic and international tax frameworks. Renowned for analytical case-solving and structured exam presentations.",
-    image: "/assets/seminar/Enhanced_Photo_02.jpg",
+    image: "/assets/classroom/taxation-session.jpg",
     coursesTaught: ["ACCA TX", "CA Inter Taxation", "CA Final Direct & Indirect Taxes"],
   },
   {
