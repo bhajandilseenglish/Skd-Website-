@@ -8,6 +8,8 @@ import { siteConfig } from "@/data/siteData";
 
 export default function HeroSection() {
   const [visible, setVisible] = useState(false);
+  const [frameAspect, setFrameAspect] = useState("16 / 9");
+  const [isPortrait, setIsPortrait] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -119,14 +121,21 @@ export default function HeroSection() {
             </div>
 
             {/* Phone */}
-            <div className="flex items-center gap-2 text-[13px] text-[#172238]/45">
-              <Phone className="w-3.5 h-3.5" />
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px] text-[#172238]/55">
+              <Phone className="w-3.5 h-3.5 text-[#3659D9]" />
               <span>Speak with an advisor —</span>
               <a
                 href={`tel:${siteConfig.contact.primaryPhoneRaw}`}
-                className="font-semibold text-[#172238]/70 hover:text-[#3659D9] transition-colors"
+                className="font-semibold text-[#172238]/80 hover:text-[#3659D9] transition-colors"
               >
                 {siteConfig.contact.primaryPhone}
+              </a>
+              <span className="text-[#172238]/25">/</span>
+              <a
+                href={`tel:${siteConfig.contact.secondaryPhoneRaw}`}
+                className="font-semibold text-[#172238]/80 hover:text-[#3659D9] transition-colors"
+              >
+                {siteConfig.contact.secondaryPhone}
               </a>
             </div>
 
@@ -158,8 +167,12 @@ export default function HeroSection() {
               transition: "opacity 0.8s ease 0.15s, transform 0.8s ease 0.15s",
             }}
           >
-            {/* Main photo frame */}
-            <div className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none">
+            {/* Main photo frame — adapts automatically to landscape or portrait */}
+            <div
+              className={`relative mx-auto transition-all duration-300 ${
+                isPortrait ? "max-w-sm sm:max-w-md lg:max-w-lg" : "max-w-xl lg:max-w-none"
+              }`}
+            >
               {/* Decorative frame border */}
               <div
                 className="absolute -inset-3 rounded-3xl pointer-events-none"
@@ -170,28 +183,35 @@ export default function HeroSection() {
               />
 
               {/* Photo container */}
-              <div className="relative rounded-2xl overflow-hidden shadow-[0_24px_64px_rgba(23,34,56,0.18)] border border-white/50">
-                <div className="relative" style={{ aspectRatio: "4/5" }}>
+              <div className="relative rounded-2xl overflow-hidden shadow-[0_24px_64px_rgba(23,34,56,0.18)] border border-white/50 bg-[#172238]/5">
+                <div className="relative w-full" style={{ aspectRatio: frameAspect }}>
                   <Image
-                    src="/assets/classroom/3.png"
-                    alt="SKD Group of Institutions — Finance education in Chandigarh"
+                    src="/assets/seminar/hero-students-certificates.jpg"
+                    alt="SKD Group of Institutions — Students with Certificates in Chandigarh"
                     fill
                     priority
-                    className="object-cover object-top"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 560px"
+                    onLoad={(e) => {
+                      const img = e.currentTarget;
+                      if (img.naturalWidth && img.naturalHeight) {
+                        setFrameAspect(`${img.naturalWidth} / ${img.naturalHeight}`);
+                        setIsPortrait(img.naturalHeight > img.naturalWidth);
+                      }
+                    }}
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 55vw, 640px"
                   />
                   {/* Subtle bottom vignette only — no heavy overlay */}
                   <div
-                    className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
+                    className="absolute inset-x-0 bottom-0 h-24 pointer-events-none"
                     style={{
                       background:
-                        "linear-gradient(to top, rgba(23,34,56,0.5) 0%, transparent 100%)",
+                        "linear-gradient(to top, rgba(23,34,56,0.55) 0%, transparent 100%)",
                     }}
                   />
 
                   {/* Campus label — small, bottom of image */}
-                  <div className="absolute bottom-4 left-4">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/10 backdrop-blur-md text-white text-[11px] font-semibold rounded-full border border-white/20">
+                  <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-black/35 backdrop-blur-md text-white text-[11px] font-semibold rounded-full border border-white/20">
                       Godrej Eternia Campus · Chandigarh
                     </span>
                   </div>

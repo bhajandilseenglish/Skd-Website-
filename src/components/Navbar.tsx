@@ -127,13 +127,22 @@ export default function Navbar() {
               Approved ACCA Silver Learning Partner
             </span>
             <span className="text-white/20">|</span>
-            <a
-              href={`tel:${siteConfig.contact.primaryPhoneRaw}`}
-              className="flex items-center gap-1 hover:text-white/90 transition-colors"
-            >
+            <div className="flex items-center gap-1.5">
               <Phone className="w-3 h-3" />
-              {siteConfig.contact.primaryPhone}
-            </a>
+              <a
+                href={`tel:${siteConfig.contact.primaryPhoneRaw}`}
+                className="hover:text-white/90 transition-colors"
+              >
+                {siteConfig.contact.primaryPhone}
+              </a>
+              <span className="text-white/25">/</span>
+              <a
+                href={`tel:${siteConfig.contact.secondaryPhoneRaw}`}
+                className="hover:text-white/90 transition-colors"
+              >
+                {siteConfig.contact.secondaryPhone}
+              </a>
+            </div>
             <span className="text-white/20">|</span>
             <span className="text-white/40">Godrej Eternia, Phase 1, Chandigarh</span>
           </div>

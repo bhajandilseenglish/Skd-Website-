@@ -21,11 +21,17 @@
   --ice-blue:        #EEF2FF;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #F6F4EF;
   color: #172238;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  overflow-x: hidden;
+  overflow-x: clip;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
