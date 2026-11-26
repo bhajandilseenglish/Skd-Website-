@@ -40,11 +40,11 @@ const rankers = [
   {
     name: "Hitesh Goyal",
     title: "ACCA Merit Ranker",
-    paper: "Corporate and Business Law (LW/F4)",
-    score: "76%",
+    paper: "Financial Accounting (FA/F3)",
+    score: "92%",
     status: "Cleared in 1st Attempt",
     image: "/assets/results/Enhanced_Photo_09.jpg",
-    quote: "Comprehensive case study discussions and faculty mentorship at Chandigarh campus made all the difference in cracking Corporate & Business Law.",
+    quote: "Comprehensive case study discussions and faculty mentorship at Chandigarh campus made all the difference in achieving 92% in Financial Accounting.",
   },
 ];
 
