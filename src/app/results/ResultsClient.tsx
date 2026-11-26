@@ -32,10 +32,10 @@ const rankers = [
     name: "Arshpreet Kaur",
     title: "ACCA Merit Ranker",
     paper: "Financial Accounting (FA/F3)",
-    score: "78%",
+    score: "85%",
     status: "Cleared in 1st Attempt",
     image: "/assets/results/Enhanced_Photo_06.jpg",
-    quote: "Individual attention and continuous CBE mock practice at SKD helped me achieve 78% in Financial Accounting on my very first attempt.",
+    quote: "Individual attention and continuous CBE mock practice at SKD helped me achieve 85% in Financial Accounting on my very first attempt.",
   },
   {
     name: "Hitesh Goyal",

@@ -17,6 +17,7 @@ import { testimonialsData, Testimonial } from "@/data/testimonials";
 
 export default function StudentSuccessSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [imageAspect, setImageAspect] = useState("1024 / 929");
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev === 0 ? testimonialsData.length - 1 : prev - 1));
@@ -73,30 +74,24 @@ export default function StudentSuccessSection() {
           <Quote className="absolute top-8 right-8 w-28 h-28 text-[#DCA43A]/10 pointer-events-none" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
-            {/* Student Portrait with Badge */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative rounded-2xl overflow-hidden h-72 sm:h-96 w-full bg-[#132445] shadow-xl border-2 border-white/10">
-                <Image
-                  src={activeTestimonial.image || "/assets/results/Enhanced_Photo_01.jpg"}
-                  alt={activeTestimonial.name}
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 1024px) 100vw, 450px"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#101F3D] via-transparent to-transparent" />
-
-                {/* Overlaid Placed At Pill */}
-                {activeTestimonial.placedAt && (
-                  <div className="absolute bottom-4 left-4 right-4 bg-white/15 backdrop-blur-md p-3 rounded-xl border border-white/20">
-                    <span className="text-[10px] font-bold text-[#DCA43A] uppercase tracking-wider block">
-                      Placed At
-                    </span>
-                    <span className="text-sm font-bold text-white flex items-center">
-                      <Building className="w-3.5 h-3.5 mr-1.5 text-[#DCA43A]" />
-                      {activeTestimonial.placedAt}
-                    </span>
-                  </div>
-                )}
+            {/* Student / Result Image — full image visible without overlays or cropping */}
+            <div className="lg:col-span-5 relative flex items-center justify-center">
+              <div className="relative rounded-2xl overflow-hidden w-full max-w-[440px] mx-auto bg-[#0D1A33] shadow-xl border border-white/15">
+                <div className="relative w-full" style={{ aspectRatio: imageAspect }}>
+                  <Image
+                    src={activeTestimonial.image || "/assets/results/Enhanced_Photo_06.jpg"}
+                    alt={activeTestimonial.name}
+                    fill
+                    onLoad={(e) => {
+                      const img = e.currentTarget;
+                      if (img.naturalWidth && img.naturalHeight) {
+                        setImageAspect(`${img.naturalWidth} / ${img.naturalHeight}`);
+                      }
+                    }}
+                    className="object-contain"
+                    sizes="(max-width: 1024px) 100vw, 440px"
+                  />
+                </div>
               </div>
             </div>
 
@@ -128,13 +123,26 @@ export default function StudentSuccessSection() {
                   </p>
                 </div>
 
-                <div className="bg-[#132445] px-4 py-2 rounded-xl border border-white/10">
-                  <span className="text-[10px] uppercase font-bold text-[#DCA43A] block">
-                    Achievement
-                  </span>
-                  <span className="text-xs font-bold text-white">
-                    {activeTestimonial.achievement}
-                  </span>
+                <div className="flex flex-wrap gap-2.5">
+                  {activeTestimonial.placedAt && (
+                    <div className="bg-[#132445] px-4 py-2 rounded-xl border border-white/10">
+                      <span className="text-[10px] uppercase font-bold text-[#DCA43A] block">
+                        Placed At
+                      </span>
+                      <span className="text-xs font-bold text-white flex items-center">
+                        <Building className="w-3 h-3 mr-1 text-[#DCA43A]" />
+                        {activeTestimonial.placedAt}
+                      </span>
+                    </div>
+                  )}
+                  <div className="bg-[#132445] px-4 py-2 rounded-xl border border-white/10">
+                    <span className="text-[10px] uppercase font-bold text-[#DCA43A] block">
+                      Achievement
+                    </span>
+                    <span className="text-xs font-bold text-white">
+                      {activeTestimonial.achievement}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
