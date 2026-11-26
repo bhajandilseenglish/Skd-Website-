@@ -12,16 +12,28 @@ interface CountUpProps {
 
 export default function CountUp({
   end,
-  duration = 1800,
+  duration = 1600,
   suffix = "",
   prefix = "",
   className = "",
 }: CountUpProps) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(end);
   const [hasStarted, setHasStarted] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion) {
+      setCount(end);
+      setHasStarted(true);
+      return;
+    }
+
+    setCount(0);
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && !hasStarted) {
@@ -36,10 +48,19 @@ export default function CountUp({
     }
 
     return () => observer.disconnect();
-  }, [hasStarted]);
+  }, [end, hasStarted]);
 
   useEffect(() => {
     if (!hasStarted) return;
+
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion) {
+      setCount(end);
+      return;
+    }
 
     let startTimestamp: number | null = null;
     let animationFrameId: number;
@@ -47,7 +68,6 @@ export default function CountUp({
     const step = (timestamp: number) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      // Ease out cubic
       const easedProgress = 1 - Math.pow(1 - progress, 3);
       setCount(Math.floor(easedProgress * end));
 
