@@ -73,7 +73,7 @@ const celebrationVideos = [
     subtitle: "Honoring merit holders and top scorers at Godrej Eternia campus",
   },
   {
-    src: "/assets/videos/results/WhatsApp Video 2026-11-19 at 4.13.06 PM.mp4",
+    src: "/assets/videos/results/WhatsApp Video 2026-11-19 at 3.45.11 PM.mp4",
     title: "Faculty & Student Success Celebration",
     subtitle: "Recognizing high achievers in Corporate & Business Law and Financial Accounting",
   },
@@ -242,12 +242,13 @@ export default function ResultsClient({ resultsData }: ResultsClientProps) {
               key={idx}
               className="bg-white rounded-2xl border border-[#172238]/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col"
             >
-              <div className="relative aspect-video bg-black">
+              <div className="relative aspect-[9/16] bg-[#0D1A33]">
                 <video
                   ref={(el) => {
                     videoRefs.current[idx] = el;
                   }}
-                  src={vid.src}
+                  src={`${vid.src}#t=0.5`}
+                  preload="metadata"
                   className="w-full h-full object-cover"
                   controls={playingVideo === vid.src}
                   playsInline
