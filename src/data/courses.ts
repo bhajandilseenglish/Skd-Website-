@@ -220,8 +220,8 @@ export const coursesData: CourseDetail[] = [
     duration: "4 to 6 Months Intensive Batch",
     modes: "Classroom (Chandigarh) & Live Online",
     awardingBody: "The Institute of Chartered Accountants of India (ICAI)",
-    heroImage: "/assets/images/ca-coaching-chandigarh.png",
-    cardImage: "/assets/courses/ca-foundation-batch.jpg",
+    heroImage: "/assets/classroom/ca-foundation.jpg",
+    cardImage: "/assets/classroom/ca-foundation.jpg",
     tagline: "Build an Unshakeable Foundation for India's Most Prestigious Finance Credential",
     overview:
       "CA Foundation is the entry-level gateway to becoming a Chartered Accountant in India. SKD Group of Institutions in Chandigarh provides an intensive, results-oriented training program that bridges high school commerce with ICAI expectations. Our experienced faculty ensures thorough conceptual clarity in accounting, legal language formulation, quantitative problem solving, and economic reasoning.",
@@ -310,8 +310,8 @@ export const coursesData: CourseDetail[] = [
     duration: "8 to 10 Months Comprehensive Training",
     modes: "Classroom (Chandigarh) & Live Online Batches",
     awardingBody: "The Institute of Chartered Accountants of India (ICAI)",
-    heroImage: "/assets/images/ca-coaching-chandigarh.png",
-    cardImage: "/assets/courses/ca-intermediate-batch.jpg",
+    heroImage: "/assets/classroom/ca-intermediate.png",
+    cardImage: "/assets/classroom/ca-intermediate.png",
     tagline: "Master Advanced Accounting, Corporate Laws & Taxation with Expert Faculty",
     overview:
       "CA Intermediate is the crucial second tier of the Chartered Accountancy trajectory. SKD Group provides an analytical, application-driven learning program covering both Group 1 and Group 2. With experienced Chartered Accountant mentors, our students build deep proficiency in corporate reporting standards, direct & indirect tax law computations, statutory auditing protocols, and strategic financial decision making.",
@@ -415,8 +415,8 @@ export const coursesData: CourseDetail[] = [
     duration: "Flexible Modular Batches",
     modes: "Classroom (Chandigarh) & High-Definition Live Online",
     awardingBody: "The Institute of Chartered Accountants of India (ICAI)",
-    heroImage: "/assets/images/ca-coaching-chandigarh.png",
-    cardImage: "/assets/courses/ca-final-batch.png",
+    heroImage: "/assets/classroom/ca-final.jpg",
+    cardImage: "/assets/classroom/ca-final.jpg",
     tagline: "Cross the Final Frontier to Become a Fellow Chartered Accountant",
     overview:
       "CA Final demands elite strategic vision, master-level technical knowledge, and an impeccable ability to synthesise corporate law, tax structures, and global financial reporting. SKD Group provides advanced coaching designed specifically for working articles and CA candidates, combining weekend schedules, recorded on-demand access, and case study masterclasses led by veteran industry practitioners.",
