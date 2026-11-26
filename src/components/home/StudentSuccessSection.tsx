@@ -17,7 +17,6 @@ import { testimonialsData, Testimonial } from "@/data/testimonials";
 
 export default function StudentSuccessSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [imageAspect, setImageAspect] = useState("1024 / 929");
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev === 0 ? testimonialsData.length - 1 : prev - 1));
@@ -74,22 +73,16 @@ export default function StudentSuccessSection() {
           <Quote className="absolute top-8 right-8 w-28 h-28 text-[#DCA43A]/10 pointer-events-none" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
-            {/* Student / Result Image — full image visible without overlays or cropping */}
+            {/* Student / Result Image — 1080x1920 (9:16) vertical frame, full image visible */}
             <div className="lg:col-span-5 relative flex items-center justify-center">
-              <div className="relative rounded-2xl overflow-hidden w-full max-w-[440px] mx-auto bg-[#0D1A33] shadow-xl border border-white/15">
-                <div className="relative w-full" style={{ aspectRatio: imageAspect }}>
+              <div className="relative rounded-2xl overflow-hidden w-full max-w-[280px] sm:max-w-[310px] mx-auto bg-[#0D1A33] shadow-xl border border-white/15">
+                <div className="relative w-full aspect-[9/16]">
                   <Image
                     src={activeTestimonial.image || "/assets/results/Enhanced_Photo_06.jpg"}
                     alt={activeTestimonial.name}
                     fill
-                    onLoad={(e) => {
-                      const img = e.currentTarget;
-                      if (img.naturalWidth && img.naturalHeight) {
-                        setImageAspect(`${img.naturalWidth} / ${img.naturalHeight}`);
-                      }
-                    }}
                     className="object-contain"
-                    sizes="(max-width: 1024px) 100vw, 440px"
+                    sizes="(max-width: 1024px) 310px, 310px"
                   />
                 </div>
               </div>
