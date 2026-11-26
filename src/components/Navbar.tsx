@@ -157,35 +157,37 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-6">
 
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0 flex items-center gap-3">
-            <div className="relative w-32 h-11 sm:w-40 sm:h-12">
+          <Link href="/" className="flex-shrink-0 flex items-center gap-2.5 sm:gap-3">
+            <div className="relative w-28 h-10 sm:w-36 sm:h-12">
               <Image
                 src="/assets/brand/logo.png"
                 alt="SKD Group of Institutions"
                 fill
                 priority
                 className="object-contain"
-                sizes="160px"
+                sizes="(max-width: 640px) 112px, 144px"
               />
             </div>
-            {/* ACCA badges — desktop only */}
-            <div className="hidden lg:flex items-center gap-2 pl-3 border-l border-black/10">
-              <div className="relative w-24 h-8">
+            {/* ACCA accreditation logos */}
+            <div className="flex items-center gap-2 pl-2.5 sm:pl-3 border-l border-black/10">
+              <div className="relative w-16 h-9 sm:w-20 sm:h-11 lg:w-24 lg:h-12">
                 <Image
                   src="/assets/images/acca-silver-learning-partner.png"
                   alt="ACCA Silver Learning Partner"
                   fill
+                  priority
                   className="object-contain"
-                  sizes="96px"
+                  sizes="(max-width: 640px) 64px, (max-width: 1024px) 80px, 96px"
                 />
               </div>
-              <div className="relative w-8 h-8">
+              <div className="relative w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11">
                 <Image
                   src="/assets/images/acca-cbe-centre.png"
-                  alt="ACCA CBE Centre"
+                  alt="ACCA Licensed CBE Centre"
                   fill
+                  priority
                   className="object-contain"
-                  sizes="32px"
+                  sizes="(max-width: 640px) 36px, 44px"
                 />
               </div>
             </div>
