@@ -8,8 +8,8 @@ import { siteConfig } from "@/data/siteData";
 
 export default function HeroSection() {
   const [visible, setVisible] = useState(false);
-  const [frameAspect, setFrameAspect] = useState("16 / 9");
-  const [isPortrait, setIsPortrait] = useState(false);
+  const [topAspect, setTopAspect] = useState("769 / 1024");
+  const [bottomAspect, setBottomAspect] = useState("1024 / 576");
   const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -157,7 +157,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* ── RIGHT: Photography ───────────────────────────────────── */}
+          {/* ── RIGHT: 2-Image Editorial Composition ─────────────────── */}
           <div
             className="relative order-first lg:order-last"
             style={{
@@ -166,74 +166,92 @@ export default function HeroSection() {
               transition: "opacity 0.8s ease 0.15s, transform 0.8s ease 0.15s",
             }}
           >
-            {/* Main photo frame — adapts automatically to landscape or portrait */}
-            <div
-              className={`relative mx-auto transition-all duration-300 ${
-                isPortrait ? "max-w-sm sm:max-w-md lg:max-w-lg" : "max-w-xl lg:max-w-none"
-              }`}
-            >
-              {/* Decorative frame border */}
+            <div className="relative mx-auto max-w-xl lg:max-w-none flex flex-col gap-4">
+              {/* Decorative atmospheric backdrop */}
               <div
                 className="absolute -inset-3 rounded-3xl pointer-events-none"
                 style={{
                   background:
-                    "linear-gradient(135deg, rgba(54,89,217,0.12) 0%, rgba(216,198,170,0.15) 100%)",
+                    "linear-gradient(135deg, rgba(54,89,217,0.10) 0%, rgba(216,198,170,0.14) 100%)",
                 }}
               />
 
-              {/* Photo container */}
-              <div className="relative rounded-2xl overflow-hidden shadow-[0_24px_64px_rgba(23,34,56,0.18)] border border-white/50 bg-[#172238]/5">
-                <div className="relative w-full" style={{ aspectRatio: frameAspect }}>
-                  <Image
-                    src="/assets/seminar/hero-students-certificates.jpg"
-                    alt="SKD Group of Institutions — Students with Certificates in Chandigarh"
-                    fill
-                    priority
-                    onLoad={(e) => {
-                      const img = e.currentTarget;
-                      if (img.naturalWidth && img.naturalHeight) {
-                        setFrameAspect(`${img.naturalWidth} / ${img.naturalHeight}`);
-                        setIsPortrait(img.naturalHeight > img.naturalWidth);
-                      }
-                    }}
-                    className="object-cover object-center"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 55vw, 640px"
-                  />
-                  {/* Subtle bottom vignette only — no heavy overlay */}
-                  <div
-                    className="absolute inset-x-0 bottom-0 h-24 pointer-events-none"
-                    style={{
-                      background:
-                        "linear-gradient(to top, rgba(23,34,56,0.55) 0%, transparent 100%)",
-                    }}
-                  />
+              {/* Top Image — Classroom Mentorship Session (Portrait) */}
+              <div className="relative w-[72%] sm:w-[62%] lg:w-[58%] mx-auto">
+                <div className="relative rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(23,34,56,0.16)] border border-white/60 bg-[#172238]/5">
+                  <div className="relative w-full" style={{ aspectRatio: topAspect }}>
+                    <Image
+                      src="/assets/classroom/hero-mentorship-session.jpg"
+                      alt="Small-batch ACCA & Finance mentorship session at SKD Chandigarh"
+                      fill
+                      priority
+                      onLoad={(e) => {
+                        const img = e.currentTarget;
+                        if (img.naturalWidth && img.naturalHeight) {
+                          setTopAspect(`${img.naturalWidth} / ${img.naturalHeight}`);
+                        }
+                      }}
+                      className="object-cover object-center"
+                      sizes="(max-width: 768px) 75vw, (max-width: 1200px) 35vw, 340px"
+                    />
+                  </div>
+                </div>
 
-                  {/* Campus label — small, bottom of image */}
-                  <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-black/35 backdrop-blur-md text-white text-[11px] font-semibold rounded-full border border-white/20">
-                      Godrej Eternia Campus · Chandigarh
-                    </span>
+                {/* Accreditation badge — upper right of top image */}
+                <div className="absolute -top-3 -right-3 sm:-top-3.5 sm:-right-4 bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.12)] border border-black/6 p-2 flex items-center gap-2 z-10">
+                  <div className="relative w-20 h-10 sm:w-24 sm:h-12">
+                    <Image
+                      src="/assets/images/acca-silver-learning-partner.png"
+                      alt="ACCA Silver Learning Partner"
+                      fill
+                      className="object-contain"
+                      sizes="96px"
+                    />
                   </div>
                 </div>
               </div>
 
-              {/* Accreditation badge — small, upper right */}
-              <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.12)] border border-black/6 p-2 flex items-center gap-2">
-                <div className="relative w-24 h-12">
-                  <Image
-                    src="/assets/images/acca-silver-learning-partner.png"
-                    alt="ACCA Silver Learning Partner"
-                    fill
-                    className="object-contain"
-                    sizes="96px"
-                  />
-                </div>
-              </div>
+              {/* Bottom / Main Image — Students with Certificates (Landscape) */}
+              <div className="relative w-full">
+                <div className="relative rounded-2xl overflow-hidden shadow-[0_24px_64px_rgba(23,34,56,0.18)] border border-white/60 bg-[#172238]/5">
+                  <div className="relative w-full" style={{ aspectRatio: bottomAspect }}>
+                    <Image
+                      src="/assets/seminar/hero-students-certificates.jpg"
+                      alt="SKD Group of Institutions — Students with Certificates in Chandigarh"
+                      fill
+                      priority
+                      onLoad={(e) => {
+                        const img = e.currentTarget;
+                        if (img.naturalWidth && img.naturalHeight) {
+                          setBottomAspect(`${img.naturalWidth} / ${img.naturalHeight}`);
+                        }
+                      }}
+                      className="object-cover object-center"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 55vw, 600px"
+                    />
+                    {/* Subtle bottom vignette only */}
+                    <div
+                      className="absolute inset-x-0 bottom-0 h-20 pointer-events-none"
+                      style={{
+                        background:
+                          "linear-gradient(to top, rgba(23,34,56,0.55) 0%, transparent 100%)",
+                      }}
+                    />
 
-              {/* Pass rate — small, lower left */}
-              <div className="absolute -bottom-4 -left-3 sm:-left-4 bg-[#172238] text-white rounded-xl shadow-[0_4px_20px_rgba(23,34,56,0.25)] px-4 py-3">
-                <div className="text-[22px] font-black leading-none text-[#D8C6AA]">85%+</div>
-                <div className="text-[11px] text-white/60 mt-0.5 font-medium">Batch Pass Rate</div>
+                    {/* Campus label — bottom right */}
+                    <div className="absolute bottom-3 right-3 sm:bottom-3.5 sm:right-3.5">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-black/40 backdrop-blur-md text-white text-[11px] font-semibold rounded-full border border-white/20">
+                        Godrej Eternia Campus · Chandigarh
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Pass rate — lower left */}
+                <div className="absolute -bottom-3 -left-2 sm:-bottom-4 sm:-left-4 bg-[#172238] text-white rounded-xl shadow-[0_4px_20px_rgba(23,34,56,0.25)] px-4 py-2.5 sm:py-3 z-10">
+                  <div className="text-[20px] sm:text-[22px] font-black leading-none text-[#D8C6AA]">85%+</div>
+                  <div className="text-[11px] text-white/60 mt-0.5 font-medium">Batch Pass Rate</div>
+                </div>
               </div>
             </div>
           </div>
