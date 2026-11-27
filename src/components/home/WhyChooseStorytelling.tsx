@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   Users,
@@ -9,10 +9,14 @@ import {
   Briefcase,
   CheckCircle2,
   Sparkles,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 export default function WhyChooseStorytelling() {
   const [activeStoryIndex, setActiveStoryIndex] = useState(0);
+  const [slideIdx, setSlideIdx] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const stories = [
     {
@@ -29,6 +33,11 @@ export default function WhyChooseStorytelling() {
         "Study plan customized to student's academic background",
       ],
       image: "/assets/classroom/4.png",
+      images: [
+        "/assets/classroom/4.png",
+        "/assets/classroom/hero-mentorship-session.jpg",
+        "/assets/classroom/taxation-session.jpg",
+      ],
       badge: "Pedagogy & Faculty",
     },
     {
@@ -45,6 +54,11 @@ export default function WhyChooseStorytelling() {
         "Instant diagnosis on weak technical areas and answer formatting",
       ],
       image: "/assets/classroom/1.png",
+      images: [
+        "/assets/classroom/1.png",
+        "/assets/classroom/taxation-session.jpg",
+        "/assets/classroom/5.png",
+      ],
       badge: "Exam Simulation",
     },
     {
@@ -61,6 +75,11 @@ export default function WhyChooseStorytelling() {
         "Unlimited recording archive available until exam completion",
       ],
       image: "/assets/classroom/2.png",
+      images: [
+        "/assets/classroom/2.png",
+        "/assets/classroom/6.png",
+        "/assets/seminar/seminar-conference-5.jpg",
+      ],
       badge: "Campus & Technology",
     },
     {
@@ -77,11 +96,29 @@ export default function WhyChooseStorytelling() {
         "Career guidance on articleship and permanent employment pathways",
       ],
       image: "/assets/seminar/Enhanced_Photo_01.jpg",
+      images: [
+        "/assets/seminar/Enhanced_Photo_01.jpg",
+        "/assets/seminar/seminar-lecture-2.jpg",
+        "/assets/seminar/hero-students-certificates.jpg",
+      ],
       badge: "Placement & Growth",
     },
   ];
 
   const current = stories[activeStoryIndex];
+  const currentSlides = current.images;
+
+  useEffect(() => {
+    setSlideIdx(0);
+  }, [activeStoryIndex]);
+
+  useEffect(() => {
+    if (isPaused || currentSlides.length <= 1) return;
+    const timer = setInterval(() => {
+      setSlideIdx((prev) => (prev + 1) % currentSlides.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [isPaused, currentSlides.length]);
 
   return (
     <section className="py-20 sm:py-28 bg-white border-b border-slate-100">
@@ -171,22 +208,65 @@ export default function WhyChooseStorytelling() {
             })}
           </div>
 
-          {/* Right Column: Visual Showcase Display */}
+          {/* Right Column: Visual Showcase Slider */}
           <div className="lg:col-span-6">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-[#101F3D]">
+            <div
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+              className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-[#101F3D] group"
+            >
               <div className="relative h-[420px] sm:h-[480px] w-full">
-                <Image
-                  src={current.image}
-                  alt={current.title}
-                  fill
-                  className="object-cover transition-all duration-700 hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 600px"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#101F3D]/95 via-[#101F3D]/25 to-transparent" />
+                {currentSlides.map((src, idx) => (
+                  <Image
+                    key={`${current.id}-${src}`}
+                    src={src}
+                    alt={`${current.title} — slide ${idx + 1}`}
+                    fill
+                    loading="eager"
+                    className={`object-cover transition-opacity duration-300 ${
+                      idx === slideIdx ? "opacity-100 z-0" : "opacity-0 pointer-events-none"
+                    }`}
+                    sizes="(max-width: 1024px) 100vw, 600px"
+                  />
+                ))}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#101F3D]/95 via-[#101F3D]/25 to-transparent z-10 pointer-events-none" />
               </div>
 
+              {/* Top-Right Slider Dots */}
+              <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15">
+                {currentSlides.map((_, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setSlideIdx(idx)}
+                    aria-label={`View slide ${idx + 1}`}
+                    className={`h-1.5 rounded-full transition-all ${
+                      idx === slideIdx ? "w-5 bg-[#DCA43A]" : "w-1.5 bg-white/50 hover:bg-white"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Prev / Next Slider Arrows */}
+              <button
+                type="button"
+                onClick={() => setSlideIdx((prev) => (prev - 1 + currentSlides.length) % currentSlides.length)}
+                aria-label="Previous image"
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/45 hover:bg-[#2855E8] text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all opacity-85 group-hover:opacity-100"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setSlideIdx((prev) => (prev + 1) % currentSlides.length)}
+                aria-label="Next image"
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/45 hover:bg-[#2855E8] text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all opacity-85 group-hover:opacity-100"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+
               {/* Story Overlay Banner */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 text-white space-y-2">
+              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 text-white space-y-2 z-20">
                 <div className="inline-flex items-center px-3 py-1 rounded-full bg-[#DCA43A] text-[#101F3D] text-xs font-bold uppercase tracking-wider">
                   {current.badge}
                 </div>

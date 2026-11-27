@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -9,14 +9,44 @@ import {
   Award,
   BookOpen,
   Sparkles,
+  ChevronLeft,
   ChevronRight,
   Building,
 } from "lucide-react";
 import { coursesData, CourseDetail } from "@/data/courses";
 
+const fallbackSlides = [
+  "/assets/classroom/hero-mentorship-session.jpg",
+  "/assets/classroom/taxation-session.jpg",
+  "/assets/seminar/seminar-lecture-2.jpg",
+  "/assets/classroom/4.png",
+  "/assets/classroom/5.png",
+  "/assets/seminar/seminar-conference-5.jpg",
+];
+
 export default function InteractiveCourseShowcase() {
   const [selectedCourse, setSelectedCourse] = useState<CourseDetail>(coursesData[0]);
   const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [slideIdx, setSlideIdx] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const courseSlides = useMemo(() => {
+    const base = [selectedCourse.cardImage, selectedCourse.heroImage].filter(Boolean);
+    const extras = fallbackSlides.filter((src) => !base.includes(src));
+    return [...Array.from(new Set(base)), ...extras.slice(0, 2)];
+  }, [selectedCourse]);
+
+  useEffect(() => {
+    setSlideIdx(0);
+  }, [selectedCourse.slug]);
+
+  useEffect(() => {
+    if (isPaused || courseSlides.length <= 1) return;
+    const timer = setInterval(() => {
+      setSlideIdx((prev) => (prev + 1) % courseSlides.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [isPaused, courseSlides.length]);
 
   const categories = ["All", "Flagship", "Chartered Accountancy", "Global Certification", "Corporate"];
 
@@ -131,24 +161,67 @@ export default function InteractiveCourseShowcase() {
           {/* Right Selected Course Showcase Card */}
           <div className="lg:col-span-7">
             <div className="bg-[#F8FAFF] rounded-3xl border border-[#2855E8]/20 overflow-hidden shadow-xl shadow-[#2855E8]/5 p-6 sm:p-8 space-y-6">
-              {/* Image & Header Banner */}
-              <div className="relative h-60 sm:h-72 w-full rounded-2xl overflow-hidden shadow-md bg-[#101F3D]">
-                <Image
-                  src={selectedCourse.cardImage || selectedCourse.heroImage}
-                  alt={selectedCourse.title}
-                  fill
-                  className="object-cover transition-transform duration-700 hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 650px"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#101F3D]/95 via-[#101F3D]/30 to-transparent" />
+              {/* Image & Header Banner Slider */}
+              <div
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+                className="relative h-60 sm:h-72 w-full rounded-2xl overflow-hidden shadow-md bg-[#101F3D] group"
+              >
+                {courseSlides.map((src, idx) => (
+                  <Image
+                    key={`${selectedCourse.slug}-${src}`}
+                    src={src}
+                    alt={`${selectedCourse.title} — slide ${idx + 1}`}
+                    fill
+                    loading="eager"
+                    className={`object-cover transition-opacity duration-300 ${
+                      idx === slideIdx ? "opacity-100 z-0" : "opacity-0 pointer-events-none"
+                    }`}
+                    sizes="(max-width: 1024px) 100vw, 650px"
+                  />
+                ))}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#101F3D]/95 via-[#101F3D]/30 to-transparent z-10 pointer-events-none" />
 
-                <div className="absolute top-4 left-4">
+                {/* Top bar: Category + Slider Dots */}
+                <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between">
                   <span className="px-3 py-1 rounded-full bg-[#DCA43A] text-[#101F3D] text-xs font-black uppercase tracking-wider shadow">
                     {selectedCourse.category}
                   </span>
+
+                  <div className="flex items-center gap-1.5 bg-black/35 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/15">
+                    {courseSlides.map((_, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => setSlideIdx(idx)}
+                        aria-label={`View slide ${idx + 1}`}
+                        className={`h-1.5 rounded-full transition-all ${
+                          idx === slideIdx ? "w-5 bg-[#DCA43A]" : "w-1.5 bg-white/50 hover:bg-white"
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </div>
 
-                <div className="absolute bottom-4 left-4 right-4 text-white">
+                {/* Prev / Next Arrows */}
+                <button
+                  type="button"
+                  onClick={() => setSlideIdx((prev) => (prev - 1 + courseSlides.length) % courseSlides.length)}
+                  aria-label="Previous slide"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/45 hover:bg-[#2855E8] text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all opacity-80 group-hover:opacity-100"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSlideIdx((prev) => (prev + 1) % courseSlides.length)}
+                  aria-label="Next slide"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/45 hover:bg-[#2855E8] text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all opacity-80 group-hover:opacity-100"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+
+                <div className="absolute bottom-4 left-4 right-4 text-white z-20">
                   <span className="text-xs text-slate-300 flex items-center mb-1">
                     <Award className="w-3.5 h-3.5 mr-1 text-[#DCA43A]" />
                     Awarded by: {selectedCourse.awardingBody}
