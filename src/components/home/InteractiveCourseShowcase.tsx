@@ -247,13 +247,42 @@ export default function InteractiveCourseShowcase() {
                   <ChevronRight className="w-4 h-4" />
                 </button>
 
-                <div className="absolute bottom-4 left-4 right-4 text-white z-20">
-                  <span className="text-xs text-slate-300 flex items-center mb-1">
-                    <Award className="w-3.5 h-3.5 mr-1 text-[#DCA43A]" />
-                    Awarded by: {selectedCourse.awardingBody}
+                <div className="absolute bottom-4 left-4 right-4 text-white z-20 flex items-end justify-between gap-3">
+                  <div>
+                    <span className="text-xs text-slate-300 flex items-center mb-1">
+                      <Award className="w-3.5 h-3.5 mr-1 text-[#DCA43A]" />
+                      Awarded by: {selectedCourse.awardingBody}
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-black">{selectedCourse.title}</h3>
+                  </div>
+                  <span className="px-2.5 py-1 rounded-lg bg-black/50 backdrop-blur-md text-[11px] font-bold text-[#DCA43A] border border-white/15 shrink-0">
+                    {slideIdx + 1} / {courseSlides.length}
                   </span>
-                  <h3 className="text-xl sm:text-2xl font-black">{selectedCourse.title}</h3>
                 </div>
+              </div>
+
+              {/* Visible Horizontal Draggable Photo Slider Strip */}
+              <div className="flex items-center gap-3 overflow-x-auto pb-1 snap-x snap-mandatory touch-pan-x select-none">
+                {courseSlides.map((src, idx) => (
+                  <button
+                    key={`thumb-${selectedCourse.slug}-${idx}`}
+                    type="button"
+                    onClick={() => setSlideIdx(idx)}
+                    className={`relative h-16 w-28 sm:h-20 sm:w-32 rounded-xl overflow-hidden shrink-0 snap-start border-2 transition-all ${
+                      idx === slideIdx
+                        ? "border-[#2855E8] ring-2 ring-[#2855E8]/25 scale-[1.02]"
+                        : "border-slate-200 opacity-70 hover:opacity-100"
+                    }`}
+                  >
+                    <Image
+                      src={src}
+                      alt={`${selectedCourse.title} thumbnail ${idx + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="128px"
+                    />
+                  </button>
+                ))}
               </div>
 
               {/* Course Overview & Tagline */}

@@ -293,14 +293,43 @@ export default function WhyChooseStorytelling() {
 
               {/* Story Overlay Banner */}
               <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 text-white space-y-2 z-20">
-                <div className="inline-flex items-center px-3 py-1 rounded-full bg-[#DCA43A] text-[#101F3D] text-xs font-bold uppercase tracking-wider">
-                  {current.badge}
+                <div className="flex items-center justify-between">
+                  <div className="inline-flex items-center px-3 py-1 rounded-full bg-[#DCA43A] text-[#101F3D] text-xs font-bold uppercase tracking-wider">
+                    {current.badge}
+                  </div>
+                  <span className="px-2.5 py-1 rounded-lg bg-black/50 backdrop-blur-md text-[11px] font-bold text-[#DCA43A] border border-white/15">
+                    {slideIdx + 1} / {currentSlides.length}
+                  </span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold">{current.title}</h3>
                 <p className="text-xs sm:text-sm text-slate-200 line-clamp-2">
                   {current.subtitle}
                 </p>
               </div>
+            </div>
+
+            {/* Visible Horizontal Draggable Photo Slider Strip */}
+            <div className="mt-4 flex items-center gap-3 overflow-x-auto pb-1 snap-x snap-mandatory touch-pan-x select-none">
+              {currentSlides.map((src, idx) => (
+                <button
+                  key={`story-thumb-${current.id}-${idx}`}
+                  type="button"
+                  onClick={() => setSlideIdx(idx)}
+                  className={`relative h-16 w-28 sm:h-20 sm:w-36 rounded-xl overflow-hidden shrink-0 snap-start border-2 transition-all ${
+                    idx === slideIdx
+                      ? "border-[#2855E8] ring-2 ring-[#2855E8]/25 scale-[1.02]"
+                      : "border-slate-200 opacity-70 hover:opacity-100"
+                  }`}
+                >
+                  <Image
+                    src={src}
+                    alt={`${current.title} thumbnail ${idx + 1}`}
+                    fill
+                    className="object-cover"
+                    sizes="144px"
+                  />
+                </button>
+              ))}
             </div>
           </div>
         </div>
