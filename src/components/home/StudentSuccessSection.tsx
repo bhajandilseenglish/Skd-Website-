@@ -17,6 +17,8 @@ import { testimonialsData, Testimonial } from "@/data/testimonials";
 
 export default function StudentSuccessSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [dragStartX, setDragStartX] = useState<number | null>(null);
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev === 0 ? testimonialsData.length - 1 : prev - 1));
@@ -24,6 +26,28 @@ export default function StudentSuccessSection() {
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev === testimonialsData.length - 1 ? 0 : prev + 1));
+  };
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if ((e.target as HTMLElement).closest("button")) return;
+    setDragStartX(e.clientX);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (dragStartX === null) return;
+    setDragOffset(e.clientX - dragStartX);
+  };
+
+  const handlePointerEnd = () => {
+    if (dragStartX === null) return;
+    if (dragOffset < -45) {
+      nextSlide();
+    } else if (dragOffset > 45) {
+      prevSlide();
+    }
+    setDragStartX(null);
+    setDragOffset(0);
   };
 
   const activeTestimonial: Testimonial = testimonialsData[currentIndex];
@@ -68,8 +92,14 @@ export default function StudentSuccessSection() {
           </div>
         </div>
 
-        {/* Featured Large Alumni Story Card */}
-        <div className="bg-[#101F3D] rounded-3xl overflow-hidden shadow-2xl border border-white/10 text-white p-6 sm:p-12 relative">
+        {/* Featured Large Alumni Story Card — Drag/Swipe enabled */}
+        <div
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerEnd}
+          onPointerCancel={handlePointerEnd}
+          className="bg-[#101F3D] rounded-3xl overflow-hidden shadow-2xl border border-white/10 text-white p-6 sm:p-12 relative select-none touch-pan-y cursor-grab active:cursor-grabbing"
+        >
           <Quote className="absolute top-8 right-8 w-28 h-28 text-[#DCA43A]/10 pointer-events-none" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">

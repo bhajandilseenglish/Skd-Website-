@@ -16,7 +16,8 @@ import {
 export default function WhyChooseStorytelling() {
   const [activeStoryIndex, setActiveStoryIndex] = useState(0);
   const [slideIdx, setSlideIdx] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [dragStartX, setDragStartX] = useState<number | null>(null);
 
   const stories = [
     {
@@ -110,15 +111,30 @@ export default function WhyChooseStorytelling() {
 
   useEffect(() => {
     setSlideIdx(0);
+    setDragOffset(0);
   }, [activeStoryIndex]);
 
-  useEffect(() => {
-    if (isPaused || currentSlides.length <= 1) return;
-    const timer = setInterval(() => {
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if ((e.target as HTMLElement).closest("button")) return;
+    setDragStartX(e.clientX);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (dragStartX === null) return;
+    setDragOffset(e.clientX - dragStartX);
+  };
+
+  const handlePointerEnd = () => {
+    if (dragStartX === null) return;
+    if (dragOffset < -45) {
       setSlideIdx((prev) => (prev + 1) % currentSlides.length);
-    }, 4500);
-    return () => clearInterval(timer);
-  }, [isPaused, currentSlides.length]);
+    } else if (dragOffset > 45) {
+      setSlideIdx((prev) => (prev - 1 + currentSlides.length) % currentSlides.length);
+    }
+    setDragStartX(null);
+    setDragOffset(0);
+  };
 
   return (
     <section className="py-20 sm:py-28 bg-white border-b border-slate-100">
@@ -208,27 +224,37 @@ export default function WhyChooseStorytelling() {
             })}
           </div>
 
-          {/* Right Column: Visual Showcase Slider */}
+          {/* Right Column: Visual Showcase Drag/Swipe Slider */}
           <div className="lg:col-span-6">
             <div
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-              className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-[#101F3D] group"
+              onPointerDown={handlePointerDown}
+              onPointerMove={handlePointerMove}
+              onPointerUp={handlePointerEnd}
+              onPointerCancel={handlePointerEnd}
+              className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-[#101F3D] group select-none touch-pan-y cursor-grab active:cursor-grabbing"
             >
-              <div className="relative h-[420px] sm:h-[480px] w-full">
-                {currentSlides.map((src, idx) => (
-                  <Image
-                    key={`${current.id}-${src}`}
-                    src={src}
-                    alt={`${current.title} — slide ${idx + 1}`}
-                    fill
-                    loading="eager"
-                    className={`object-cover transition-opacity duration-300 ${
-                      idx === slideIdx ? "opacity-100 z-0" : "opacity-0 pointer-events-none"
-                    }`}
-                    sizes="(max-width: 1024px) 100vw, 600px"
-                  />
-                ))}
+              <div className="relative h-[420px] sm:h-[480px] w-full overflow-hidden">
+                <div
+                  className="flex h-full w-full"
+                  style={{
+                    transform: `translateX(calc(-${slideIdx * 100}% + ${dragOffset}px))`,
+                    transition: dragStartX !== null ? "none" : "transform 320ms cubic-bezier(0.22, 1, 0.36, 1)",
+                  }}
+                >
+                  {currentSlides.map((src, idx) => (
+                    <div key={`${current.id}-${src}-${idx}`} className="relative h-full w-full shrink-0">
+                      <Image
+                        src={src}
+                        alt={`${current.title} — slide ${idx + 1}`}
+                        fill
+                        loading="eager"
+                        draggable={false}
+                        className="object-cover pointer-events-none"
+                        sizes="(max-width: 1024px) 100vw, 600px"
+                      />
+                    </div>
+                  ))}
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#101F3D]/95 via-[#101F3D]/25 to-transparent z-10 pointer-events-none" />
               </div>
 

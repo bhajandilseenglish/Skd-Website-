@@ -28,7 +28,8 @@ export default function InteractiveCourseShowcase() {
   const [selectedCourse, setSelectedCourse] = useState<CourseDetail>(coursesData[0]);
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [slideIdx, setSlideIdx] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [dragStartX, setDragStartX] = useState<number | null>(null);
 
   const courseSlides = useMemo(() => {
     const base = [selectedCourse.cardImage, selectedCourse.heroImage].filter(Boolean);
@@ -38,15 +39,30 @@ export default function InteractiveCourseShowcase() {
 
   useEffect(() => {
     setSlideIdx(0);
+    setDragOffset(0);
   }, [selectedCourse.slug]);
 
-  useEffect(() => {
-    if (isPaused || courseSlides.length <= 1) return;
-    const timer = setInterval(() => {
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if ((e.target as HTMLElement).closest("button")) return;
+    setDragStartX(e.clientX);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (dragStartX === null) return;
+    setDragOffset(e.clientX - dragStartX);
+  };
+
+  const handlePointerEnd = () => {
+    if (dragStartX === null) return;
+    if (dragOffset < -45) {
       setSlideIdx((prev) => (prev + 1) % courseSlides.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [isPaused, courseSlides.length]);
+    } else if (dragOffset > 45) {
+      setSlideIdx((prev) => (prev - 1 + courseSlides.length) % courseSlides.length);
+    }
+    setDragStartX(null);
+    setDragOffset(0);
+  };
 
   const categories = ["All", "Flagship", "Chartered Accountancy", "Global Certification", "Corporate"];
 
@@ -161,25 +177,35 @@ export default function InteractiveCourseShowcase() {
           {/* Right Selected Course Showcase Card */}
           <div className="lg:col-span-7">
             <div className="bg-[#F8FAFF] rounded-3xl border border-[#2855E8]/20 overflow-hidden shadow-xl shadow-[#2855E8]/5 p-6 sm:p-8 space-y-6">
-              {/* Image & Header Banner Slider */}
+              {/* Image & Header Banner — Drag/Swipe Slider */}
               <div
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
-                className="relative h-60 sm:h-72 w-full rounded-2xl overflow-hidden shadow-md bg-[#101F3D] group"
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerEnd}
+                onPointerCancel={handlePointerEnd}
+                className="relative h-60 sm:h-72 w-full rounded-2xl overflow-hidden shadow-md bg-[#101F3D] group select-none touch-pan-y cursor-grab active:cursor-grabbing"
               >
-                {courseSlides.map((src, idx) => (
-                  <Image
-                    key={`${selectedCourse.slug}-${src}`}
-                    src={src}
-                    alt={`${selectedCourse.title} — slide ${idx + 1}`}
-                    fill
-                    loading="eager"
-                    className={`object-cover transition-opacity duration-300 ${
-                      idx === slideIdx ? "opacity-100 z-0" : "opacity-0 pointer-events-none"
-                    }`}
-                    sizes="(max-width: 1024px) 100vw, 650px"
-                  />
-                ))}
+                <div
+                  className="flex h-full w-full"
+                  style={{
+                    transform: `translateX(calc(-${slideIdx * 100}% + ${dragOffset}px))`,
+                    transition: dragStartX !== null ? "none" : "transform 320ms cubic-bezier(0.22, 1, 0.36, 1)",
+                  }}
+                >
+                  {courseSlides.map((src, idx) => (
+                    <div key={`${selectedCourse.slug}-${src}-${idx}`} className="relative h-full w-full shrink-0">
+                      <Image
+                        src={src}
+                        alt={`${selectedCourse.title} — slide ${idx + 1}`}
+                        fill
+                        loading="eager"
+                        draggable={false}
+                        className="object-cover pointer-events-none"
+                        sizes="(max-width: 1024px) 100vw, 650px"
+                      />
+                    </div>
+                  ))}
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#101F3D]/95 via-[#101F3D]/30 to-transparent z-10 pointer-events-none" />
 
                 {/* Top bar: Category + Slider Dots */}
