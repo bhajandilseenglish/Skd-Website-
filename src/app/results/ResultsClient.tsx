@@ -46,19 +46,37 @@ const rankers = [
     image: "/assets/results/Enhanced_Photo_09.jpg",
     quote: "Comprehensive case study discussions and faculty mentorship at Chandigarh campus made all the difference in achieving 92% in Financial Accounting.",
   },
+  {
+    name: "Himanshi",
+    title: "ACCA Merit Achiever",
+    paper: "Financial Accounting (FA/F3)",
+    score: "64%",
+    status: "November 2026 Attempt",
+    image: "/assets/results/himanshi-fa-64.jpg",
+    quote: "Consistent revision, CBE lab mock tests, and patient faculty guidance at SKD helped me clear Financial Accounting comfortably.",
+  },
+  {
+    name: "Yagan Goyal",
+    title: "ACCA Merit Achiever",
+    paper: "Financial Accounting (FA/F3)",
+    score: "64%",
+    status: "November 2026 Attempt",
+    image: "/assets/results/yagan-goyal-fa-64.jpg",
+    quote: "Practical classroom teaching and regular mock assessments at Godrej Eternia campus gave me complete clarity in Financial Accounting concepts.",
+  },
 ];
 
 const scorecards = [
-  { src: "/assets/results/124f5707-11e4-41ed-9e3c-dfa29fae004e.png", title: "Official ACCA Exam Pass Confirmation — Applied Skills" },
-  { src: "/assets/results/12d5089e-a65b-45a2-881c-3e7ab19cdccb.png", title: "ACCA Official Transcript & Result Notification" },
-  { src: "/assets/results/187e7fbd-dbbf-4fb9-ad04-8b804b08cd4a.png", title: "Verified Student Examination Result Card" },
-  { src: "/assets/results/21581df1-bbb3-4253-9c19-06955675ad67.png", title: "Official Examination Score Statement" },
-  { src: "/assets/results/3ff74f5f-3433-46d9-803f-7c827451580a.png", title: "ACCA Applied Knowledge CBE Clearance Sheet" },
-  { src: "/assets/results/42e1ca98-e30f-471e-beee-a9013f84468a.png", title: "Student Pass Certificate & Result Verification" },
-  { src: "/assets/results/4560808a-676d-4f33-82b7-3d487998f1d1.png", title: "ACCA Global Examination Clearance Record" },
-  { src: "/assets/results/6ce7a758-7957-4ae6-aafb-986a2b1848ef.png", title: "Official Pass Slip & Marks Breakdown" },
-  { src: "/assets/results/9d05a731-69ed-4510-9791-8188adb436c0.png", title: "ACCA Professional Qualification Score Confirmation" },
-  { src: "/assets/results/c67e9637-d098-402c-8453-71a55c6df85a.png", title: "Certified Student Pass Report & Scorecard" },
+  { src: "/assets/results/124f5707-11e4-41ed-9e3c-dfa29fae004e.png", title: "ACCA Provisional Result Notification — Student & Faculty Mentor" },
+  { src: "/assets/results/12d5089e-a65b-45a2-881c-3e7ab19cdccb.png", title: "Arshpreet Kaur — ACCA Result Cake Celebration" },
+  { src: "/assets/results/187e7fbd-dbbf-4fb9-ad04-8b804b08cd4a.png", title: "Nandini Pant — ACCA Provisional Result Notification" },
+  { src: "/assets/results/21581df1-bbb3-4253-9c19-06955675ad67.png", title: "Arshpreet Kaur — ACCA Financial Accounting (FA) Result" },
+  { src: "/assets/results/3ff74f5f-3433-46d9-803f-7c827451580a.png", title: "ACCA Exam Clearance — Student Cake Celebration" },
+  { src: "/assets/results/42e1ca98-e30f-471e-beee-a9013f84468a.png", title: "Hitesh Goyal — 92% Financial Accounting Celebration" },
+  { src: "/assets/results/4560808a-676d-4f33-82b7-3d487998f1d1.png", title: "Rahul — ACCA Business & Technology (BT) Result" },
+  { src: "/assets/results/6ce7a758-7957-4ae6-aafb-986a2b1848ef.png", title: "Hitesh Goyal — Ranker Cake Cutting With Faculty" },
+  { src: "/assets/results/9d05a731-69ed-4510-9791-8188adb436c0.png", title: "Yagan Goyal — ACCA Provisional Result Notification" },
+  { src: "/assets/results/c67e9637-d098-402c-8453-71a55c6df85a.png", title: "ACCA Provisional Result Notification — Student & Parent" },
 ];
 
 const celebrationVideos = [
@@ -122,12 +140,12 @@ export default function ResultsClient({ resultsData }: ResultsClientProps) {
               key={i}
               className="bg-white rounded-3xl border border-[#172238]/10 overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col md:flex-row group"
             >
-              <div className="relative md:w-5/12 h-72 md:h-auto min-h-[260px] bg-[#172238] overflow-hidden">
+              <div className="relative md:w-5/12 aspect-[2/3] md:aspect-auto md:min-h-[340px] bg-[#0D1A33] overflow-hidden">
                 <Image
                   src={r.image}
                   alt={r.name}
                   fill
-                  className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  className="object-contain p-1.5 group-hover:scale-103 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, 300px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#172238]/80 via-transparent to-transparent md:hidden" />
@@ -165,7 +183,7 @@ export default function ResultsClient({ resultsData }: ResultsClientProps) {
         </div>
       </section>
 
-      {/* 2. Official Student Scorecard Proofs */}
+      {/* 2. ACCA Result Notifications & Student Celebrations */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#172238] rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-2xl">
           <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#3659D9]/20 rounded-full blur-3xl pointer-events-none" />
@@ -174,17 +192,17 @@ export default function ResultsClient({ resultsData }: ResultsClientProps) {
             <div>
               <div className="inline-flex items-center space-x-1.5 px-3 py-1 bg-white/10 rounded-full text-xs font-semibold text-[#D8C6AA] mb-3">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Verified Examination Records</span>
+                <span>Verified ACCA Clearances</span>
               </div>
               <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
-                Official Examination Scorecards
+                ACCA Result Notifications &amp; Student Celebrations
               </h2>
               <p className="text-xs sm:text-sm text-slate-300 mt-2 max-w-2xl">
-                Click any official result document below to zoom in and verify paper marks, student names, and passing confirmations.
+                Real moments from our Chandigarh campus: students receiving official ACCA Provisional Result Notifications and celebrating exam passes with faculty and family. Click any photo to inspect.
               </p>
             </div>
             <span className="text-xs font-semibold text-slate-400">
-              10 Verified Scorecards
+              10 Verified Result Photos
             </span>
           </div>
 
@@ -200,7 +218,7 @@ export default function ResultsClient({ resultsData }: ResultsClientProps) {
                   src={card.src}
                   alt={card.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300 opacity-90 group-hover:opacity-100"
+                  className="object-cover object-top group-hover:scale-105 transition-transform duration-300 opacity-95 group-hover:opacity-100"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/90 transition-all" />
