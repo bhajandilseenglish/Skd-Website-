@@ -179,14 +179,14 @@ export default function Navbar() {
             </div>
             {/* ACCA accreditation logos */}
             <div className="flex items-center gap-2 pl-2.5 sm:pl-3 border-l border-black/10">
-              <div className="relative w-16 h-9 sm:w-20 sm:h-11 lg:w-24 lg:h-12">
+              <div className="relative w-24 h-8 sm:w-28 sm:h-9 lg:w-32 lg:h-10">
                 <Image
                   src="/assets/images/acca-silver-learning-partner.png"
                   alt="ACCA Silver Learning Partner"
                   fill
                   priority
                   className="object-contain"
-                  sizes="(max-width: 640px) 64px, (max-width: 1024px) 80px, 96px"
+                  sizes="(max-width: 640px) 96px, (max-width: 1024px) 112px, 128px"
                 />
               </div>
               <div className="relative w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11">

@@ -199,13 +199,13 @@ export default function HeroSection() {
 
                 {/* Accreditation badge — upper right of top image */}
                 <div className="absolute -top-3 -right-3 sm:-top-3.5 sm:-right-4 bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.12)] border border-black/6 p-2 flex items-center gap-2 z-10">
-                  <div className="relative w-20 h-10 sm:w-24 sm:h-12">
+                  <div className="relative w-28 h-9 sm:w-32 sm:h-10">
                     <Image
                       src="/assets/images/acca-silver-learning-partner.png"
                       alt="ACCA Silver Learning Partner"
                       fill
                       className="object-contain"
-                      sizes="96px"
+                      sizes="128px"
                     />
                   </div>
                 </div>
