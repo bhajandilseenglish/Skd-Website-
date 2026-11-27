@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -9,60 +9,14 @@ import {
   Award,
   BookOpen,
   Sparkles,
-  ChevronLeft,
   ChevronRight,
   Building,
 } from "lucide-react";
 import { coursesData, CourseDetail } from "@/data/courses";
 
-const fallbackSlides = [
-  "/assets/classroom/hero-mentorship-session.jpg",
-  "/assets/classroom/taxation-session.jpg",
-  "/assets/seminar/seminar-lecture-2.jpg",
-  "/assets/classroom/4.png",
-  "/assets/classroom/5.png",
-  "/assets/seminar/seminar-conference-5.jpg",
-];
-
 export default function InteractiveCourseShowcase() {
   const [selectedCourse, setSelectedCourse] = useState<CourseDetail>(coursesData[0]);
   const [activeCategory, setActiveCategory] = useState<string>("All");
-  const [slideIdx, setSlideIdx] = useState(0);
-  const [dragOffset, setDragOffset] = useState(0);
-  const [dragStartX, setDragStartX] = useState<number | null>(null);
-
-  const courseSlides = useMemo(() => {
-    const base = [selectedCourse.cardImage, selectedCourse.heroImage].filter(Boolean);
-    const extras = fallbackSlides.filter((src) => !base.includes(src));
-    return [...Array.from(new Set(base)), ...extras.slice(0, 2)];
-  }, [selectedCourse]);
-
-  useEffect(() => {
-    setSlideIdx(0);
-    setDragOffset(0);
-  }, [selectedCourse.slug]);
-
-  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    if ((e.target as HTMLElement).closest("button")) return;
-    setDragStartX(e.clientX);
-    e.currentTarget.setPointerCapture(e.pointerId);
-  };
-
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (dragStartX === null) return;
-    setDragOffset(e.clientX - dragStartX);
-  };
-
-  const handlePointerEnd = () => {
-    if (dragStartX === null) return;
-    if (dragOffset < -45) {
-      setSlideIdx((prev) => (prev + 1) % courseSlides.length);
-    } else if (dragOffset > 45) {
-      setSlideIdx((prev) => (prev - 1 + courseSlides.length) % courseSlides.length);
-    }
-    setDragStartX(null);
-    setDragOffset(0);
-  };
 
   const categories = ["All", "Flagship", "Chartered Accountancy", "Global Certification", "Corporate"];
 
@@ -177,112 +131,30 @@ export default function InteractiveCourseShowcase() {
           {/* Right Selected Course Showcase Card */}
           <div className="lg:col-span-7">
             <div className="bg-[#F8FAFF] rounded-3xl border border-[#2855E8]/20 overflow-hidden shadow-xl shadow-[#2855E8]/5 p-6 sm:p-8 space-y-6">
-              {/* Image & Header Banner — Drag/Swipe Slider */}
-              <div
-                onPointerDown={handlePointerDown}
-                onPointerMove={handlePointerMove}
-                onPointerUp={handlePointerEnd}
-                onPointerCancel={handlePointerEnd}
-                className="relative h-60 sm:h-72 w-full rounded-2xl overflow-hidden shadow-md bg-[#101F3D] group select-none touch-pan-y cursor-grab active:cursor-grabbing"
-              >
-                <div
-                  className="flex h-full w-full"
-                  style={{
-                    transform: `translateX(calc(-${slideIdx * 100}% + ${dragOffset}px))`,
-                    transition: dragStartX !== null ? "none" : "transform 320ms cubic-bezier(0.22, 1, 0.36, 1)",
-                  }}
-                >
-                  {courseSlides.map((src, idx) => (
-                    <div key={`${selectedCourse.slug}-${src}-${idx}`} className="relative h-full w-full shrink-0">
-                      <Image
-                        src={src}
-                        alt={`${selectedCourse.title} — slide ${idx + 1}`}
-                        fill
-                        loading="eager"
-                        draggable={false}
-                        className="object-cover pointer-events-none"
-                        sizes="(max-width: 1024px) 100vw, 650px"
-                      />
-                    </div>
-                  ))}
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#101F3D]/95 via-[#101F3D]/30 to-transparent z-10 pointer-events-none" />
+              {/* Image & Header Banner */}
+              <div className="relative h-60 sm:h-72 w-full rounded-2xl overflow-hidden shadow-md bg-[#101F3D]">
+                <Image
+                  src={selectedCourse.cardImage || selectedCourse.heroImage}
+                  alt={selectedCourse.title}
+                  fill
+                  className="object-cover transition-transform duration-700 hover:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 650px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#101F3D]/95 via-[#101F3D]/30 to-transparent" />
 
-                {/* Top bar: Category + Slider Dots */}
-                <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between">
+                <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 rounded-full bg-[#DCA43A] text-[#101F3D] text-xs font-black uppercase tracking-wider shadow">
                     {selectedCourse.category}
                   </span>
-
-                  <div className="flex items-center gap-1.5 bg-black/35 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/15">
-                    {courseSlides.map((_, idx) => (
-                      <button
-                        key={idx}
-                        type="button"
-                        onClick={() => setSlideIdx(idx)}
-                        aria-label={`View slide ${idx + 1}`}
-                        className={`h-1.5 rounded-full transition-all ${
-                          idx === slideIdx ? "w-5 bg-[#DCA43A]" : "w-1.5 bg-white/50 hover:bg-white"
-                        }`}
-                      />
-                    ))}
-                  </div>
                 </div>
 
-                {/* Prev / Next Arrows */}
-                <button
-                  type="button"
-                  onClick={() => setSlideIdx((prev) => (prev - 1 + courseSlides.length) % courseSlides.length)}
-                  aria-label="Previous slide"
-                  className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/45 hover:bg-[#2855E8] text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all opacity-80 group-hover:opacity-100"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSlideIdx((prev) => (prev + 1) % courseSlides.length)}
-                  aria-label="Next slide"
-                  className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/45 hover:bg-[#2855E8] text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all opacity-80 group-hover:opacity-100"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-
-                <div className="absolute bottom-4 left-4 right-4 text-white z-20 flex items-end justify-between gap-3">
-                  <div>
-                    <span className="text-xs text-slate-300 flex items-center mb-1">
-                      <Award className="w-3.5 h-3.5 mr-1 text-[#DCA43A]" />
-                      Awarded by: {selectedCourse.awardingBody}
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-black">{selectedCourse.title}</h3>
-                  </div>
-                  <span className="px-2.5 py-1 rounded-lg bg-black/50 backdrop-blur-md text-[11px] font-bold text-[#DCA43A] border border-white/15 shrink-0">
-                    {slideIdx + 1} / {courseSlides.length}
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <span className="text-xs text-slate-300 flex items-center mb-1">
+                    <Award className="w-3.5 h-3.5 mr-1 text-[#DCA43A]" />
+                    Awarded by: {selectedCourse.awardingBody}
                   </span>
+                  <h3 className="text-xl sm:text-2xl font-black">{selectedCourse.title}</h3>
                 </div>
-              </div>
-
-              {/* Visible Horizontal Draggable Photo Slider Strip */}
-              <div className="flex items-center gap-3 overflow-x-auto pb-1 snap-x snap-mandatory touch-pan-x select-none">
-                {courseSlides.map((src, idx) => (
-                  <button
-                    key={`thumb-${selectedCourse.slug}-${idx}`}
-                    type="button"
-                    onClick={() => setSlideIdx(idx)}
-                    className={`relative h-16 w-28 sm:h-20 sm:w-32 rounded-xl overflow-hidden shrink-0 snap-start border-2 transition-all ${
-                      idx === slideIdx
-                        ? "border-[#2855E8] ring-2 ring-[#2855E8]/25 scale-[1.02]"
-                        : "border-slate-200 opacity-70 hover:opacity-100"
-                    }`}
-                  >
-                    <Image
-                      src={src}
-                      alt={`${selectedCourse.title} thumbnail ${idx + 1}`}
-                      fill
-                      className="object-cover"
-                      sizes="128px"
-                    />
-                  </button>
-                ))}
               </div>
 
               {/* Course Overview & Tagline */}
