@@ -77,6 +77,7 @@ const scorecards = [
   { src: "/assets/results/6ce7a758-7957-4ae6-aafb-986a2b1848ef.png", title: "Hitesh Goyal — Ranker Cake Cutting With Faculty" },
   { src: "/assets/results/9d05a731-69ed-4510-9791-8188adb436c0.png", title: "Yagan Goyal — ACCA Provisional Result Notification" },
   { src: "/assets/results/c67e9637-d098-402c-8453-71a55c6df85a.png", title: "ACCA Provisional Result Notification — Student & Parent" },
+  { src: "/assets/results/acca-fa-result-notification.jpg", title: "ACCA Financial Accounting (FA) Provisional Result Notification" },
 ];
 
 const celebrationVideos = [
@@ -202,7 +203,7 @@ export default function ResultsClient({ resultsData }: ResultsClientProps) {
               </p>
             </div>
             <span className="text-xs font-semibold text-slate-400">
-              10 Verified Result Photos
+              {scorecards.length} Verified Result Photos
             </span>
           </div>
 

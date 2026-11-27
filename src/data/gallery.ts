@@ -150,6 +150,14 @@ export const galleryData: GalleryItem[] = [
     tag: "Merit Cohort",
   },
   {
+    id: "res-fa-notif-new",
+    title: "ACCA Financial Accounting (FA) Provisional Result Notification",
+    category: "Exam Results",
+    image: "/assets/results/acca-fa-result-notification.jpg",
+    caption: "Student receiving official ACCA Provisional Result Notification for Financial Accounting (FA) Computer Based Examination at SKD Chandigarh.",
+    tag: "ACCA FA Pass",
+  },
+  {
     id: "res-3",
     title: "Strategic Business Reporting (SBR) — Arshpreet Kaur",
     category: "Exam Results",
