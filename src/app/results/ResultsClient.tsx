@@ -67,16 +67,16 @@ const rankers = [
 ];
 
 const scorecards = [
-  { src: "/assets/results/124f5707-11e4-41ed-9e3c-dfa29fae004e.png", title: "ACCA Provisional Result Notification — Student & Faculty Mentor" },
+  { src: "/assets/results/result-notif-student-mentor.jpg", title: "ACCA Provisional Result Notification — Student & Faculty Mentor" },
   { src: "/assets/results/12d5089e-a65b-45a2-881c-3e7ab19cdccb.png", title: "Arshpreet Kaur — ACCA Result Cake Celebration" },
   { src: "/assets/results/187e7fbd-dbbf-4fb9-ad04-8b804b08cd4a.png", title: "Nandini Pant — ACCA Provisional Result Notification" },
-  { src: "/assets/results/21581df1-bbb3-4253-9c19-06955675ad67.png", title: "Arshpreet Kaur — ACCA Financial Accounting (FA) Result" },
+  { src: "/assets/results/result-notif-arshpreet.jpg", title: "Arshpreet Kaur — ACCA Financial Accounting (FA) Result" },
   { src: "/assets/results/3ff74f5f-3433-46d9-803f-7c827451580a.png", title: "ACCA Exam Clearance — Student Cake Celebration" },
   { src: "/assets/results/42e1ca98-e30f-471e-beee-a9013f84468a.png", title: "Hitesh Goyal — 92% Financial Accounting Celebration" },
-  { src: "/assets/results/4560808a-676d-4f33-82b7-3d487998f1d1.png", title: "Rahul — ACCA Business & Technology (BT) Result" },
+  { src: "/assets/results/result-notif-rahul.jpg", title: "Rahul — ACCA Business & Technology (BT) Result" },
   { src: "/assets/results/6ce7a758-7957-4ae6-aafb-986a2b1848ef.png", title: "Hitesh Goyal — Ranker Cake Cutting With Faculty" },
-  { src: "/assets/results/9d05a731-69ed-4510-9791-8188adb436c0.png", title: "Yagan Goyal — ACCA Provisional Result Notification" },
-  { src: "/assets/results/c67e9637-d098-402c-8453-71a55c6df85a.png", title: "ACCA Provisional Result Notification — Student & Parent" },
+  { src: "/assets/results/result-notif-yagan.jpg", title: "Yagan Goyal — ACCA Provisional Result Notification" },
+  { src: "/assets/results/result-notif-parent.jpg", title: "ACCA Provisional Result Notification — Student & Parent" },
   { src: "/assets/results/acca-fa-result-notification.jpg", title: "ACCA Financial Accounting (FA) Provisional Result Notification" },
 ];
 
@@ -207,13 +207,13 @@ export default function ResultsClient({ resultsData }: ResultsClientProps) {
             </span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 relative z-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 relative z-10">
             {scorecards.map((card, idx) => (
               <button
                 key={idx}
                 type="button"
                 onClick={() => setLightboxIdx(idx)}
-                className="group relative rounded-2xl overflow-hidden bg-slate-900/60 border border-white/10 hover:border-[#3659D9] transition-all aspect-[3/4] flex flex-col text-left focus:outline-none focus:ring-2 focus:ring-[#3659D9]"
+                className="group relative rounded-2xl overflow-hidden bg-slate-900/60 border border-white/10 hover:border-[#3659D9] transition-all aspect-square flex flex-col text-left focus:outline-none focus:ring-2 focus:ring-[#3659D9]"
               >
                 <Image
                   src={card.src}
