@@ -68,6 +68,66 @@ export default function PlacementsPage() {
           </div>
         </section>
 
+        {/* Verified Alumni Placements & Campus Drives */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <div className="inline-flex items-center space-x-1.5 px-3 py-1 bg-[#EFF6FF] text-[#2855E8] rounded-full text-xs font-semibold mb-3 border border-[#2855E8]/20">
+              <Award className="w-3.5 h-3.5 text-[#2855E8]" />
+              <span>Verified Corporate Selections</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#101F3D]">
+              Alumni Placements &amp; Corporate Drives
+            </h2>
+            <p className="text-xs sm:text-sm text-[#66758C] mt-2">
+              Real corporate selections across IBM, WNS, Genpact, Wipro, Axis Bank, IndusInd Bank, and ICICI Bank.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                src: "/assets/placements/corporate-id-cards-1.jpg",
+                title: "IBM, WNS & Genpact Selections",
+                caption: "Placed alumni across IBM, WNS, and Genpact corporate finance & operations roles.",
+              },
+              {
+                src: "/assets/placements/corporate-id-cards-2.jpg",
+                title: "Wipro, Genpact & IBM Cohorts",
+                caption: "Verified corporate ID cards of SKD-trained graduates working in multinational hubs.",
+              },
+              {
+                src: "/assets/placements/banking-placement-drives.jpg",
+                title: "Banking & Regional Office Drives",
+                caption: "Campus recruitment visits and interviews at Axis Bank, IndusInd Bank, and ICICI Bank.",
+              },
+              {
+                src: "/assets/placements/placement-classroom-prep.jpg",
+                title: "Placement Readiness & Training Kits",
+                caption: "Structured interview preparation and corporate study kits at SKD Chandigarh.",
+              },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl border border-[#E2E8F5] overflow-hidden shadow-card-blue hover:border-[#2855E8]/40 hover:shadow-lg transition-all flex flex-col"
+              >
+                <div className="relative aspect-square w-full bg-slate-50">
+                  <Image
+                    src={item.src}
+                    alt={item.title}
+                    fill
+                    className="object-contain p-1.5"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
+                  />
+                </div>
+                <div className="p-4 border-t border-[#E2E8F5] flex-1">
+                  <h3 className="text-sm font-bold text-[#101F3D]">{item.title}</h3>
+                  <p className="text-xs text-[#66758C] mt-1 leading-relaxed">{item.caption}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* 4-Step Career Cell Process */}
         <section className="bg-[#EFF6FF]/60 py-16 border-y border-[#E2E8F5]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
