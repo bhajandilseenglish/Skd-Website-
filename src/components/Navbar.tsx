@@ -44,12 +44,9 @@ const courseLinks = [
     badge: "AICPA USA",
     desc: "Gold standard US accounting",
   },
-  {
-    name: "Corporate Training",
-    href: "/corporate-training",
-    badge: "Enterprise",
-    desc: "Customized IFRS workshops",
-  },
+];
+
+const corporateTrainingTracks = [
   {
     name: "Data Analytics",
     href: "/corporate-training/data-analytics",
@@ -239,7 +236,7 @@ export default function Navbar() {
 
               {/* Dropdown panel */}
               {dropdownOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 w-[520px] bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border border-black/6 p-5 z-50">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 w-[560px] bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border border-black/6 p-5 z-50">
                   <p className="text-[10px] font-bold text-[#767C88] uppercase tracking-widest mb-3">
                     Professional Qualifications
                   </p>
@@ -264,6 +261,44 @@ export default function Navbar() {
                       </Link>
                     ))}
                   </div>
+
+                  {/* Corporate Training Section with nested skill tracks */}
+                  <div className="mt-4 p-3.5 rounded-xl bg-[#F6F4EF]/80 border border-black/6">
+                    <Link
+                      href="/corporate-training"
+                      className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-black/8 group"
+                    >
+                      <div>
+                        <span className="text-[13px] font-bold text-[#172238] group-hover:text-[#3659D9] transition-colors">
+                          Corporate Training
+                        </span>
+                        <p className="text-[11px] text-[#767C88]">Customized IFRS &amp; practical skill workshops</p>
+                      </div>
+                      <span className="text-[10px] font-bold text-[#3659D9] bg-[#3659D9]/10 px-2 py-0.5 rounded-full">
+                        Enterprise
+                      </span>
+                    </Link>
+                    <div className="grid grid-cols-3 gap-1.5">
+                      {corporateTrainingTracks.map((track) => (
+                        <Link
+                          key={track.href}
+                          href={track.href}
+                          className="p-2 rounded-lg bg-white hover:bg-[#EEF2FF] border border-black/5 transition-colors group"
+                        >
+                          <div className="flex items-center justify-between gap-1">
+                            <span className="text-[12px] font-semibold text-[#172238] group-hover:text-[#3659D9] truncate">
+                              {track.name}
+                            </span>
+                            <span className="text-[9.5px] font-bold text-[#3659D9] bg-[#3659D9]/8 px-1.5 py-0.5 rounded-full shrink-0">
+                              {track.badge}
+                            </span>
+                          </div>
+                          <p className="text-[10.5px] text-[#767C88] mt-0.5 truncate">{track.desc}</p>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
                   <div className="mt-3 pt-3 border-t border-black/6">
                     <Link
                       href="/courses"
@@ -340,6 +375,31 @@ export default function Navbar() {
                     </span>
                   </Link>
                 ))}
+
+                {/* Mobile Corporate Training + nested tracks */}
+                <div className="mt-2 mx-2 p-3 rounded-xl bg-[#F6F4EF]/80 border border-black/6 space-y-1">
+                  <Link
+                    href="/corporate-training"
+                    className="flex items-center justify-between px-2 py-1.5 rounded-lg text-sm font-bold text-[#172238]"
+                  >
+                    <span>Corporate Training</span>
+                    <span className="text-[10px] font-bold text-[#3659D9] bg-[#3659D9]/10 px-2 py-0.5 rounded-full">
+                      Enterprise
+                    </span>
+                  </Link>
+                  {corporateTrainingTracks.map((track) => (
+                    <Link
+                      key={track.href}
+                      href={track.href}
+                      className="flex items-center justify-between px-3 py-2 rounded-lg text-xs text-[#172238]/80 bg-white hover:bg-[#EEF2FF] transition-colors"
+                    >
+                      <span className="font-medium">{track.name}</span>
+                      <span className="text-[10px] font-bold text-[#3659D9] bg-[#3659D9]/8 px-2 py-0.5 rounded-full">
+                        {track.badge}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
               </div>
 
               {/* Mobile CTAs */}
